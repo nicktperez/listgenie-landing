@@ -1,0 +1,135 @@
+
+body {
+  font-family: sans-serif;
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+  background: #f7f8fa;
+  color: #333;
+}
+
+section {
+  padding: 60px 20px;
+  max-width: 960px;
+  margin: auto;
+}
+
+h1, h2, h3, h4 {
+  color: #222;
+}
+
+.btn-primary {
+  background: #0077ff;
+  color: white;
+  padding: 12px 24px;
+  text-decoration: none;
+  border-radius: 6px;
+  display: inline-block;
+}
+
+.btn-outline {
+  border: 2px solid #0077ff;
+  color: #0077ff;
+  padding: 10px 22px;
+  border-radius: 6px;
+  display: inline-block;
+  text-decoration: none;
+}
+
+.hero, .email-capture {
+  text-align: center;
+  background: white;
+  padding: 100px 20px;
+}
+
+.social-proof .logos {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.problem-solution, .features, .demo, .faq, .pricing {
+  background: #fff;
+  margin-top: 40px;
+}
+
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 30px;
+  margin-top: 30px;
+}
+
+.feature {
+  background: #f0f4f8;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.pricing-tiers {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: space-around;
+  margin-top: 40px;
+}
+
+.tier {
+  background: #f0f4f8;
+  padding: 30px;
+  border-radius: 10px;
+  flex: 1;
+  min-width: 260px;
+  max-width: 300px;
+  text-align: center;
+}
+
+.tier.popular {
+  border: 3px solid #0077ff;
+  background: #e6f0ff;
+}
+
+.badge {
+  background: #0077ff;
+  color: white;
+  padding: 3px 8px;
+  font-size: 0.8em;
+  border-radius: 5px;
+}
+
+.faq-item {
+  margin-bottom: 20px;
+}
+
+form {
+  margin-top: 20px;
+}
+
+form input[type="email"] {
+  padding: 10px;
+  width: 60%;
+  max-width: 300px;
+  margin-right: 10px;
+}
+
+form button {
+  padding: 10px 20px;
+  background: #0077ff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+}
+
+footer {
+  text-align: center;
+  padding: 40px 20px;
+  background: #f0f0f0;
+  margin-top: 60px;
+}
+
+footer nav a {
+  margin: 0 15px;
+  color: #444;
+  text-decoration: none;
+}
