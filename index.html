@@ -3,204 +3,173 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>ListGenie.ai – Your AI Listing Assistant</title>
+  <title>ListGenie.ai — AI Listings, Emails & Posts in Seconds</title>
   <link rel="stylesheet" href="styles.css" />
-  <script src="script.js" defer></script>
+  <script defer src="script.js"></script>
 </head>
-<body>
+<body class="theme-dark">
 
-  <!-- Header / Navbar (light theme) -->
-  <header class="site-header">
-    <nav class="navbar" aria-label="Primary">
-      <div class="nav-inner">
-        <a href="/" class="logo">ListGenie</a>
+  <!-- =================== NAVBAR =================== -->
+  <header class="lg-header">
+    <div class="container nav-row">
+      <a href="/" class="brand">
+        <span class="sparkle">✨</span>
+        <span>ListGenie<span class="dot">.ai</span></span>
+      </a>
 
-        <!-- Desktop nav -->
-        <ul class="nav-links">
-          <li><a href="#features">Features</a></li>
-          <li><a href="#pricing">Pricing</a></li>
-          <li><a href="#faq">FAQ</a></li>
-        </ul>
+      <!-- Desktop nav -->
+      <nav class="nav-links" aria-label="Primary">
+        <a href="#features">Features</a>
+        <a href="#trust">Trusted By</a>
+        <a href="#pricing">Pricing</a>
+        <a href="https://app.listgenie.ai/sign-in" class="muted">Sign in</a>
+        <a href="https://app.listgenie.ai" class="btn cta">Launch App</a>
+      </nav>
 
-        <div class="nav-cta">
-          <a href="https://app.listgenie.ai" class="btn-primary small">Launch App</a>
-        </div>
+      <!-- Mobile toggle -->
+      <button class="nav-toggle" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu">
+        <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+      </button>
+    </div>
 
-        <!-- Mobile hamburger -->
-        <button
-          class="hamburger"
-          id="hamburger"
-          aria-label="Open menu"
-          aria-controls="mobile-menu"
-          aria-expanded="false"
-        >
-          <span class="bar"></span>
-          <span class="bar"></span>
-          <span class="bar"></span>
-        </button>
-      </div>
-
-      <!-- Mobile menu -->
-      <div class="mobile-menu" id="mobile-menu" hidden>
-        <ul>
-          <li><a href="#features" data-close-menu>Features</a></li>
-          <li><a href="#pricing" data-close-menu>Pricing</a></li>
-          <li><a href="#faq" data-close-menu>FAQ</a></li>
-        </ul>
-        <a href="https://app.listgenie.ai" class="btn-primary block" data-close-menu>Launch App</a>
-      </div>
+    <!-- Mobile sheet -->
+    <nav id="mobile-menu" class="mobile-sheet" aria-hidden="true">
+      <a href="#features" class="sheet-link">Features</a>
+      <a href="#trust" class="sheet-link">Trusted By</a>
+      <a href="#pricing" class="sheet-link">Pricing</a>
+      <a href="https://app.listgenie.ai/sign-in" class="sheet-link">Sign in</a>
+      <a href="https://app.listgenie.ai" class="sheet-link btn cta">Launch App</a>
     </nav>
   </header>
 
-  <!-- HERO SECTION -->
-  <section class="hero" id="hero">
-    <h1>AI Listings in Seconds</h1>
-    <p>Generate property descriptions, emails, and posts with one click.</p>
-    <a href="https://app.listgenie.ai" class="btn-primary">Get Started Free</a>
-  </section>
+  <!-- =================== HERO =================== -->
+  <section class="hero">
+    <div class="container grid-hero">
+      <div class="hero-copy">
+        <h1>AI Listings, Emails &amp; Posts — <span class="accent">in seconds.</span></h1>
+        <p class="sub">ListGenie.ai helps realtors generate polished property descriptions, client‑ready emails, and scroll‑stopping social posts. Less typing, more selling.</p>
 
-  <!-- SOCIAL PROOF -->
-  <section class="social-proof" id="social-proof">
-    <h2>Trusted by Realtors Nationwide</h2>
-    <p>Join professionals from top real estate brands.</p>
-    <div class="logos">
-      <img src="https://via.placeholder.com/100x40?text=Zillow" alt="Zillow" />
-      <img src="https://via.placeholder.com/100x40?text=Redfin" alt="Redfin" />
-      <img src="https://via.placeholder.com/100x40?text=Compass" alt="Compass" />
-      <img src="https://via.placeholder.com/100x40?text=Coldwell" alt="Coldwell" />
-      <img src="https://via.placeholder.com/100x40?text=ReMax" alt="ReMax" />
+        <div class="hero-actions">
+          <a href="https://app.listgenie.ai" class="btn primary">Get Started Free</a>
+          <a href="#features" class="btn ghost">See how it works</a>
+        </div>
+
+        <div class="meta">
+          <img class="avatar" src="https://i.pravatar.cc/40?img=13" alt="" />
+          <span><strong>2,000+</strong> generations created by agents this month</span>
+        </div>
+      </div>
+
+      <!-- Mock card -->
+      <aside class="hero-card">
+        <div class="card-title">Listing Outline → Full Description</div>
+        <div class="pill">3 Bed · 2 Bath · 1,850 sqft · Austin</div>
+        <div class="skeleton s1"></div>
+        <div class="skeleton s2"></div>
+        <div class="skeleton s3"></div>
+        <button class="btn gradient full">Generate Description</button>
+      </aside>
     </div>
   </section>
 
-  <!-- PROBLEM + SOLUTION -->
-  <section class="problem-solution">
-    <h2>The Struggle is Real</h2>
-    <p>Writing listings, emails, and social media posts takes time.</p>
-    <p>ListGenie.ai automates it all in seconds — no typing, no stress. Just input your details and go.</p>
-  </section>
-
-  <!-- FEATURE HIGHLIGHTS -->
-  <section class="features" id="features">
-    <h2>Powerful Tools, Real Results</h2>
-    <div class="feature-grid">
-      <div class="feature">
-        <h3>🧾 AI Listing Writer</h3>
-        <p>Create property listings instantly.</p>
-        <p>Just enter a few details — AI handles the rest with perfect tone and formatting.</p>
-      </div>
-      <div class="feature">
-        <h3>📧 One-Click Emails</h3>
-        <p>Send client-ready messages fast.</p>
-        <p>Generate follow-ups, announcements, and updates in seconds.</p>
-      </div>
-      <div class="feature">
-        <h3>📱 Social Post Generator</h3>
-        <p>Boost your brand online.</p>
-        <p>Instant Facebook, Instagram, and LinkedIn posts for every listing.</p>
-      </div>
-      <div class="feature">
-        <h3>📂 Realtor Templates</h3>
-        <p>Access pre-built, proven templates.</p>
-        <p>Customizable content for all your communication needs.</p>
-      </div>
-      <div class="feature">
-        <h3>⏱️ Time-Saving Automation</h3>
-        <p>Less time writing, more time selling.</p>
-        <p>Let AI handle the content so you can focus on clients.</p>
+  <!-- =================== TRUST =================== -->
+  <section id="trust" class="trust">
+    <div class="container">
+      <p class="trust-title">Trusted by agents from leading brokerages</p>
+      <div class="logo-row">
+        <span class="logo-chip">Compass</span>
+        <span class="logo-chip">eXp</span>
+        <span class="logo-chip">RE/MAX</span>
+        <span class="logo-chip">Keller Williams</span>
+        <span class="logo-chip">Coldwell Banker</span>
       </div>
     </div>
   </section>
 
-  <!-- DEMO -->
-  <section class="demo" id="demo">
-    <h2>See It In Action</h2>
-    <p>Watch how quickly you can generate polished content with ListGenie.ai.</p>
-    <p><em>[Demo video placeholder]</em></p>
-  </section>
-
-  <!-- PRICING -->
-  <section class="pricing" id="pricing">
-    <h2>Simple, Transparent Pricing</h2>
-    <div class="pricing-tiers">
-      <div class="tier">
-        <h3>Starter</h3>
-        <p>$9/month</p>
-        <ul>
-          <li>Basic Listing Generator</li>
-          <li>Email Templates</li>
-          <li>5 Social Posts / mo</li>
-        </ul>
-        <a href="https://app.listgenie.ai" class="btn-outline">Choose Plan</a>
-      </div>
-      <div class="tier popular">
-        <span class="badge">Most Popular</span>
-        <h3>Pro</h3>
-        <p>$29/month</p>
-        <ul>
-          <li>Unlimited Listings</li>
-          <li>1-Click Emails</li>
-          <li>Unlimited Social Posts</li>
-        </ul>
-        <a href="https://app.listgenie.ai" class="btn-primary">Choose Plan</a>
-      </div>
-      <div class="tier">
-        <h3>Team</h3>
-        <p>$99/month</p>
-        <ul>
-          <li>Multi-User Access</li>
-          <li>Team Collaboration</li>
-          <li>Priority Support</li>
-        </ul>
-        <a href="https://app.listgenie.ai" class="btn-outline">Choose Plan</a>
+  <!-- =================== FEATURES =================== -->
+  <section id="features" class="features">
+    <div class="container">
+      <h2 class="section-title">Powerful tools. <span class="accent">Real results.</span></h2>
+      <div class="feature-grid">
+        <div class="feature-card">
+          <h3>🧾 AI Listing Writer</h3>
+          <p>Create property listings instantly with the right tone & formatting.</p>
+        </div>
+        <div class="feature-card">
+          <h3>📧 One‑Click Emails</h3>
+          <p>Follow‑ups, announcements, and updates—ready to send.</p>
+        </div>
+        <div class="feature-card">
+          <h3>📱 Social Post Generator</h3>
+          <p>Facebook, Instagram, and LinkedIn posts in seconds.</p>
+        </div>
+        <div class="feature-card">
+          <h3>📂 Realtor Templates</h3>
+          <p>Proven templates you can tweak and save for later.</p>
+        </div>
+        <div class="feature-card">
+          <h3>⏱️ Time‑Saving Automation</h3>
+          <p>Spend less time writing and more time closing.</p>
+        </div>
       </div>
     </div>
-    <p style="text-align:center; margin-top:20px;">Cancel anytime.</p>
   </section>
 
-  <!-- FAQ -->
-  <section class="faq" id="faq">
-    <h2>Frequently Asked Questions</h2>
-    <div class="faq-item">
-      <h4>What does ListGenie.ai do?</h4>
-      <p>It helps realtors write listings, emails, and social posts instantly with AI.</p>
-    </div>
-    <div class="faq-item">
-      <h4>Can I cancel anytime?</h4>
-      <p>Yes, you can cancel your subscription at any time.</p>
-    </div>
-    <div class="faq-item">
-      <h4>Do I need any tech experience?</h4>
-      <p>Nope — it's made for busy professionals. Just fill out a few fields and click generate.</p>
-    </div>
-    <div class="faq-item">
-      <h4>What types of content can it create?</h4>
-      <p>Property listings, emails, social media posts, and more.</p>
-    </div>
-    <div class="faq-item">
-      <h4>Is there a free trial?</h4>
-      <p>Yes! You can explore core features before upgrading.</p>
+  <!-- =================== PRICING =================== -->
+  <section id="pricing" class="pricing">
+    <div class="container">
+      <h2 class="section-title">Simple, transparent pricing</h2>
+
+      <div class="pricing-grid">
+        <div class="tier">
+          <h3>Starter</h3>
+          <p class="price">$9<span>/mo</span></p>
+          <ul>
+            <li>Basic Listing Generator</li>
+            <li>Email Templates</li>
+            <li>5 Social Posts / mo</li>
+          </ul>
+          <a href="https://app.listgenie.ai" class="btn ghost full">Choose Plan</a>
+        </div>
+
+        <div class="tier popular">
+          <div class="badge">Most Popular</div>
+          <h3>Pro</h3>
+          <p class="price">$29<span>/mo</span></p>
+          <ul>
+            <li>Unlimited Listings</li>
+            <li>1‑Click Emails</li>
+            <li>Unlimited Social Posts</li>
+          </ul>
+          <a href="https://app.listgenie.ai" class="btn primary full">Choose Plan</a>
+        </div>
+
+        <div class="tier">
+          <h3>Team</h3>
+          <p class="price">$99<span>/mo</span></p>
+          <ul>
+            <li>Multi‑User Access</li>
+            <li>Team Collaboration</li>
+            <li>Priority Support</li>
+          </ul>
+          <a href="https://app.listgenie.ai" class="btn ghost full">Choose Plan</a>
+        </div>
+      </div>
+
+      <p class="note">Cancel anytime.</p>
     </div>
   </section>
 
-  <!-- EMAIL CAPTURE -->
-  <section class="email-capture" id="email">
-    <h2>Get Early Access</h2>
-    <p>We’ll notify you when ListGenie.ai launches.</p>
-    <form onsubmit="captureEmail(event)">
-      <input type="email" id="email-input" placeholder="you@example.com" required />
-      <button type="submit">Join the Waitlist</button>
-    </form>
-  </section>
-
-  <!-- FOOTER -->
-  <footer>
-    <nav>
-      <a href="#">Privacy Policy</a>
-      <a href="#">Terms of Service</a>
-      <a href="#">Contact</a>
-    </nav>
-    <p>© 2025 ListGenie.ai. All rights reserved.</p>
+  <!-- =================== FOOTER =================== -->
+  <footer class="footer">
+    <div class="container footer-row">
+      <p>© <span id="year"></span> ListGenie.ai</p>
+      <nav class="footer-links">
+        <a href="#">Privacy</a>
+        <a href="#">Terms</a>
+        <a href="mailto:support@listgenie.ai">Contact</a>
+      </nav>
+    </div>
   </footer>
-
 </body>
 </html>

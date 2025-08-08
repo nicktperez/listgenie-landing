@@ -1,47 +1,35 @@
-// Email capture (placeholder)
-function captureEmail(event) {
-  event.preventDefault();
-  const email = document.getElementById("email-input").value.trim();
-  if (!email) return;
-  alert(`Thanks for joining the waitlist, ${email}!`);
-  document.getElementById("email-input").value = "";
-  return false;
-}
-window.captureEmail = captureEmail;
-
 // Mobile menu toggle
-(function () {
-  const toggle = document.getElementById("hamburger");
-  const menu = document.getElementById("mobile-menu");
+(() => {
+  const toggle = document.querySelector('.nav-toggle');
+  const sheet  = document.getElementById('mobile-menu');
+  if (!toggle || !sheet) return;
 
-  if (!toggle || !menu) return;
+  const open = () => {
+    toggle.setAttribute('aria-expanded', 'true');
+    sheet.classList.add('open');
+    sheet.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  };
+  const close = () => {
+    toggle.setAttribute('aria-expanded', 'false');
+    sheet.classList.remove('open');
+    sheet.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  };
 
-  function openMenu() {
-    menu.hidden = false;
-    toggle.setAttribute("aria-expanded", "true");
-  }
-  function closeMenu() {
-    menu.hidden = true;
-    toggle.setAttribute("aria-expanded", "false");
-  }
-  const isOpen = () => toggle.getAttribute("aria-expanded") === "true";
-
-  toggle.addEventListener("click", () => (isOpen() ? closeMenu() : openMenu()));
-
-  // Close when clicking a menu link
-  menu.querySelectorAll("[data-close-menu]").forEach((a) =>
-    a.addEventListener("click", closeMenu)
-  );
-
-  // Close on Escape
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape" && isOpen()) closeMenu();
+  toggle.addEventListener('click', () => {
+    const isOpen = toggle.getAttribute('aria-expanded') === 'true';
+    isOpen ? close() : open();
   });
-
-  // Close if you click outside
-  document.addEventListener("click", (e) => {
-    if (!isOpen()) return;
-    const within = menu.contains(e.target) || toggle.contains(e.target);
-    if (!within) closeMenu();
-  });
+  sheet.addEventListener('click', (e) => { if (e.target.matches('a')) close(); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') close(); });
+  matchMedia('(min-width:900px)').addEventListener('change', (e) => e.matches && close());
 })();
+
+// Footer year
+document.getElementById('year')?.replaceWith((() => {
+  const span = document.createElement('span');
+  span.id = 'year';
+  span.textContent = new Date().getFullYear();
+  return span;
+})());
