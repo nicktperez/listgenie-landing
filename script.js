@@ -24,13 +24,9 @@ window.captureEmail = captureEmail;
     menu.hidden = true;
     toggle.setAttribute("aria-expanded", "false");
   }
-  function isOpen() {
-    return toggle.getAttribute("aria-expanded") === "true";
-  }
+  const isOpen = () => toggle.getAttribute("aria-expanded") === "true";
 
-  toggle.addEventListener("click", () => {
-    isOpen() ? closeMenu() : openMenu();
-  });
+  toggle.addEventListener("click", () => (isOpen() ? closeMenu() : openMenu()));
 
   // Close when clicking a menu link
   menu.querySelectorAll("[data-close-menu]").forEach((a) =>
@@ -45,7 +41,7 @@ window.captureEmail = captureEmail;
   // Close if you click outside
   document.addEventListener("click", (e) => {
     if (!isOpen()) return;
-    const withinMenu = menu.contains(e.target) || toggle.contains(e.target);
-    if (!withinMenu) closeMenu();
+    const within = menu.contains(e.target) || toggle.contains(e.target);
+    if (!within) closeMenu();
   });
 })();
