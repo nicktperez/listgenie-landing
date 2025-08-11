@@ -1,35 +1,40 @@
-// Mobile menu toggle
-(() => {
-  const toggle = document.querySelector('.nav-toggle');
-  const sheet  = document.getElementById('mobile-menu');
-  if (!toggle || !sheet) return;
+function toggleMenu(){
+  const el = document.getElementById('mobileMenu');
+  el.style.display = el.style.display === 'flex' ? 'none' : 'flex';
+}
+function closeMenu(){
+  const el = document.getElementById('mobileMenu');
+  el.style.display = 'none';
+}
+document.getElementById('y').textContent = new Date().getFullYear();
 
-  const open = () => {
-    toggle.setAttribute('aria-expanded', 'true');
-    sheet.classList.add('open');
-    sheet.setAttribute('aria-hidden', 'false');
-    document.body.style.overflow = 'hidden';
-  };
-  const close = () => {
-    toggle.setAttribute('aria-expanded', 'false');
-    sheet.classList.remove('open');
-    sheet.setAttribute('aria-hidden', 'true');
-    document.body.style.overflow = '';
-  };
+// Smooth scroll for same-page anchors
+document.addEventListener('click', (e) => {
+  const a = e.target.closest('a[href^="#"]');
+  if (!a) return;
+  const id = a.getAttribute('href').slice(1);
+  const t = document.getElementById(id);
+  if (t) {
+    e.preventDefault();
+    window.scrollTo({ top: t.offsetTop - 70, behavior: 'smooth' });
+    closeMenu();
+  }
+});
 
-  toggle.addEventListener('click', () => {
-    const isOpen = toggle.getAttribute('aria-expanded') === 'true';
-    isOpen ? close() : open();
-  });
-  sheet.addEventListener('click', (e) => { if (e.target.matches('a')) close(); });
-  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') close(); });
-  matchMedia('(min-width:900px)').addEventListener('change', (e) => e.matches && close());
-})();
+// Minimal click analytics (beacon). Replace `/collect` with your endpoint if needed.
+function sendBeacon(eventName, meta = {}) {
+  try {
+    const url = '/collect'; // optional: implement in your host if you want to store events
+    const body = JSON.stringify({ event: eventName, meta, ts: Date.now(), path: location.pathname });
+    if (navigator.sendBeacon) navigator.sendBeacon(url, body);
+    else fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body, keepalive: true });
+  } catch {}
+}
+document.addEventListener('click', (e) => {
+  const btn = e.target.closest('.track');
+  if (!btn) return;
+  const eventName = btn.getAttribute('data-event') || 'click';
+  sendBeacon(eventName);
+});
 
-// Footer year
-document.getElementById('year')?.replaceWith((() => {
-  const span = document.createElement('span');
-  span.id = 'year';
-  span.textContent = new Date().getFullYear();
-  return span;
-})());
+// If you use a GIF/MP4 in hero, nothing else needed. Keep only one of <img> or <video> in index.html.
