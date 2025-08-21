@@ -76,6 +76,11 @@
   font-size: 13px;
 }
 
+.btn.compact {
+  padding: 6px 10px;
+  font-size: 13px;
+}
+
 /* Loading state */
 .btn.loading {
   pointer-events: none;

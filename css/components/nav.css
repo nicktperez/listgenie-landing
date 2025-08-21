@@ -24,7 +24,7 @@
   align-items: center;
   justify-content: space-between;
   gap: var(--spacing-md);
-  padding: 12px 20px;
+  padding: 8px 20px;
   max-width: 1100px;
   margin: 0 auto;
 }
@@ -32,9 +32,10 @@
 .brand {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
   font-weight: 800;
   transition: var(--transition);
+  font-size: 14px;
 }
 
 .brand:hover {
@@ -42,8 +43,8 @@
 }
 
 .brand-logo {
-  width: 20px;
-  height: 20px;
+  width: 18px;
+  height: 18px;
   display: block;
   transition: var(--transition);
 }
@@ -62,11 +63,12 @@
 }
 
 .nav-link {
-  padding: 8px 10px;
+  padding: 6px 8px;
   border-radius: var(--radius-sm);
   color: var(--fg-dim);
   transition: var(--transition);
   position: relative;
+  font-size: 14px;
 }
 
 .nav-link:hover {
