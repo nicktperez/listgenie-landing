@@ -76,7 +76,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   
   <!-- Styles -->
-  <link rel="stylesheet" href="css/main.css?v=3" />
+  <link rel="stylesheet" href="css/main.css?v=4" />
 
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="assets/listgenie-logo.svg" />
@@ -87,17 +87,15 @@
   <link rel="manifest" href="manifest.json" />
 </head>
 <body>
-  <!-- Skip Link for Accessibility -->
-  <a href="#main-content" class="skip-link">Skip to main content</a>
-
   <!-- NAV -->
   <header class="nav" role="banner">
-    <div class="nav-inner">
-      <a href="#" class="brand" aria-label="ListGenie.ai - Home">
-        <img src="assets/listgenie-logo.svg" alt="" class="brand-logo" aria-hidden="true" />
-        <span class="brand-text">ListGenie<span class="brand-dot">.ai</span></span>
-      </a>
-      <nav class="nav-links" role="navigation" aria-label="Main navigation">
+    <div class="nav-inner container">
+      <div class="nav-brand">
+        <a href="#" aria-label="ListGenie.ai">
+          <img src="assets/listgenie-logo.svg" alt="ListGenie.ai" width="120" height="32" />
+        </a>
+      </div>
+      <nav class="nav-links">
         <a href="#how" class="nav-link">How it works</a>
         <a href="#features" class="nav-link">Features</a>
         <a href="#pricing" class="nav-link">Pricing</a>
@@ -119,14 +117,6 @@
           <span></span><span></span><span></span>
         </button>
       </div>
-    </div>
-    <div id="mobileMenu" class="mobile-menu" role="navigation" aria-label="Mobile navigation">
-      <a href="#how" onclick="closeMenu()">How it works</a>
-      <a href="#features" onclick="closeMenu()">Features</a>
-      <a href="#pricing" onclick="closeMenu()">Pricing</a>
-      <a href="#faq" onclick="closeMenu()">FAQ</a>
-      <a class="btn ghost track" data-event="open_app" href="https://app.listgenie.ai">Open App</a>
-      <a class="btn solid track" data-event="start_trial" href="https://app.listgenie.ai">Start free trial</a>
     </div>
   </header>
   

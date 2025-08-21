@@ -73,42 +73,6 @@ html {
   }
 }
 
-/* Notification styles */
-.notification {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  padding: var(--spacing-md);
-  border-radius: var(--radius-md);
-  color: white;
-  font-weight: 500;
-  z-index: 1000;
-  animation: slideInRight 0.3s ease;
-}
-
-.notification-info {
-  background: var(--brand);
-}
-
-.notification-success {
-  background: var(--ok);
-}
-
-.notification-error {
-  background: #dc2626;
-}
-
-@keyframes slideInRight {
-  from {
-    transform: translateX(100%);
-    opacity: 0;
-  }
-  to {
-    transform: translateX(0);
-    opacity: 1;
-  }
-}
-
 /* Print styles */
 @media print {
   .nav,

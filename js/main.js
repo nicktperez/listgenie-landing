@@ -808,41 +808,40 @@ class ListGenieApp {
     }
     
     // Show success message
-    this.showPreviewMessage('Listing generated successfully!', 'success');
+    this.outputArea.innerHTML = `
+      <div class="generated-content">
+        <h4>Generated Listing:</h4>
+        <div class="premium-features">
+          <strong>✨ Pro Feature:</strong> This is a preview. Get the full version with Pro!
+        </div>
+        <p>${generatedContent}</p>
+        <div class="output-actions">
+          <button class="copy-btn" onclick="navigator.clipboard.writeText('${generatedContent.replace(/'/g, "\\'")}')">
+            📋 Copy to Clipboard
+          </button>
+        </div>
+      </div>
+    `;
   }
   
   setupCopyButton() {
-    const copyBtn = document.querySelector('.copy-btn');
-    if (!copyBtn) return;
-    
-    copyBtn.addEventListener('click', async () => {
-      const generatedContent = document.querySelector('.generated-content');
-      if (!generatedContent) return;
-      
-      const textToCopy = generatedContent.textContent || generatedContent.innerText;
-      
-      try {
-        await Utils.copyToClipboard(textToCopy);
-        
-        // Show success state
-        copyBtn.classList.add('copied');
-        copyBtn.innerHTML = '<span class="copy-icon">✅</span> Copied!';
-        
-        // Reset after 2 seconds
-        setTimeout(() => {
-          copyBtn.classList.remove('copied');
-          copyBtn.innerHTML = '<span class="copy-icon">📋</span> Copy';
-        }, 2000);
-        
-        // Track copy event
-        if (window.analytics) {
-          window.analytics.sendEvent('preview_copied');
+    const copyBtn = this.outputArea.querySelector('.copy-btn');
+    if (copyBtn) {
+      copyBtn.addEventListener('click', async () => {
+        const content = this.outputArea.querySelector('.generated-content p')?.textContent;
+        if (content) {
+          try {
+            await navigator.clipboard.writeText(content);
+            copyBtn.textContent = '✅ Copied!';
+            setTimeout(() => {
+              copyBtn.textContent = '📋 Copy to Clipboard';
+            }, 2000);
+          } catch (err) {
+            console.error('Failed to copy:', err);
+          }
         }
-      } catch (error) {
-        console.error('Failed to copy:', error);
-        this.showPreviewMessage('Failed to copy to clipboard', 'error');
-      }
-    });
+      });
+    }
   }
   
   createSampleListing(propertyText, tone) {
