@@ -1,0 +1,165 @@
+/* Section Layouts */
+.how {
+  padding: var(--spacing-xl) 0;
+  border-top: 1px solid var(--line);
+  background: var(--bg2);
+  position: relative;
+}
+
+.how::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--line), transparent);
+}
+
+.features {
+  padding: var(--spacing-xl) 0;
+  position: relative;
+}
+
+.pricing {
+  padding: var(--spacing-xl) 0;
+  border-top: 1px solid var(--line);
+  background: var(--bg2);
+  position: relative;
+}
+
+.pricing::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--line), transparent);
+}
+
+.faq {
+  padding: var(--spacing-xl) 0;
+  position: relative;
+}
+
+.footer {
+  border-top: 1px solid var(--line);
+  padding: 20px 0;
+  background: var(--bg);
+  position: relative;
+}
+
+.footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--line), transparent);
+}
+
+/* Section headers */
+.how h2, .features h2, .pricing h2, .faq h2 {
+  font-size: clamp(24px, 4vw, 28px);
+  margin: 0 0 var(--spacing-md);
+  text-align: center;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--fg);
+}
+
+.pricing-sub {
+  text-align: center;
+  color: var(--fg-dim);
+  max-width: 700px;
+  margin: 0 auto var(--spacing-md);
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+/* Section content containers */
+.how .container,
+.features .container,
+.pricing .container,
+.faq .container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* FAQ specific styles */
+.faq-list {
+  max-width: 800px;
+  margin: 0 auto;
+  display: grid;
+  gap: var(--spacing-md);
+}
+
+/* Footer specific styles */
+.footer-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-md);
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.footer-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 800;
+}
+
+.footer-links {
+  display: flex;
+  gap: var(--spacing-md);
+  flex-wrap: wrap;
+}
+
+.footer-links a {
+  color: var(--fg-dim);
+  transition: var(--transition);
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: var(--radius-sm);
+}
+
+.footer-links a:hover {
+  color: var(--fg);
+  background: rgba(255,255,255,.03);
+}
+
+.footer-copy {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 800px) {
+  .footer-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--spacing-md);
+  }
+  
+  .footer-links {
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 768px) {
+  .how,
+  .features,
+  .pricing,
+  .faq {
+    padding: var(--spacing-lg) 0;
+  }
+  
+  .how h2, .features h2, .pricing h2, .faq h2 {
+    font-size: 24px;
+  }
+}

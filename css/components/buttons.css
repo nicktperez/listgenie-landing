@@ -1,0 +1,128 @@
+/* Button Components */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 14px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--line);
+  transition: var(--transition);
+  cursor: pointer;
+  white-space: nowrap;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1;
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+.btn:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(124, 92, 255, 0.3);
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Button variants */
+.btn.solid {
+  background: var(--brand);
+  border-color: #6b54f2;
+  color: #fff;
+}
+
+.btn.solid:hover {
+  background: #6b54f2;
+  border-color: #5a47e0;
+}
+
+.btn.ghost {
+  background: transparent;
+  color: var(--fg);
+}
+
+.btn.ghost:hover {
+  background: rgba(255,255,255,.06);
+  border-color: rgba(255,255,255,.2);
+}
+
+/* Button sizes */
+.btn.xl {
+  padding: 13px 18px;
+  font-size: 16px;
+  border-radius: var(--radius-md);
+}
+
+.btn.lg {
+  padding: 12px 16px;
+  font-size: 15px;
+}
+
+.btn.sm {
+  padding: 8px 12px;
+  font-size: 13px;
+}
+
+/* Loading state */
+.btn.loading {
+  pointer-events: none;
+}
+
+.btn.loading .spinner {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border: 2px solid transparent;
+  border-top: 2px solid currentColor;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-right: 8px;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Button group */
+.btn-group {
+  display: flex;
+  gap: var(--spacing-sm);
+}
+
+.btn-group .btn:not(:last-child) {
+  border-right: none;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.btn-group .btn:not(:first-child) {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+/* Icon buttons */
+.btn-icon {
+  padding: var(--spacing-sm);
+  min-width: 40px;
+  min-height: 40px;
+}
+
+.btn-icon svg {
+  width: 16px;
+  height: 16px;
+}

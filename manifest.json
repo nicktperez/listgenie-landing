@@ -1,0 +1,73 @@
+{
+  "name": "ListGenie.ai - MLS-ready real estate listings",
+  "short_name": "ListGenie",
+  "description": "Generate MLS-ready listings and social captions in seconds. Save to your library. Free 14-day Pro trial.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0b0d11",
+  "theme_color": "#7c5cff",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "lang": "en",
+  "categories": ["business", "productivity", "real-estate"],
+  "icons": [
+    {
+      "src": "assets/listgenie-logo.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "assets/listgenie-logo.svg",
+      "sizes": "192x192",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "assets/listgenie-logo.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "assets/listgenie-screenshot-1.jpg",
+      "sizes": "1280x720",
+      "type": "image/jpeg",
+      "form_factor": "wide",
+      "label": "ListGenie landing page"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Start Trial",
+      "short_name": "Trial",
+      "description": "Start your free 14-day Pro trial",
+      "url": "https://app.listgenie.ai",
+      "icons": [
+        {
+          "src": "assets/listgenie-logo.svg",
+          "sizes": "96x96"
+        }
+      ]
+    },
+    {
+      "name": "Open App",
+      "short_name": "App",
+      "description": "Open the ListGenie application",
+      "url": "https://app.listgenie.ai",
+      "icons": [
+        {
+          "src": "assets/listgenie-logo.svg",
+          "sizes": "96x96"
+        }
+      ]
+    }
+  ],
+  "related_applications": [
+    {
+      "platform": "web",
+      "url": "https://app.listgenie.ai"
+    }
+  ],
+  "prefer_related_applications": false
+}

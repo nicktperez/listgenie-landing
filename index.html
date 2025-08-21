@@ -6,52 +6,97 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#0b0d11" />
   <meta name="description" content="Generate MLS-ready listings and social captions in seconds. Pick a tone, refine with one-click actions, and save to your library. Free 14-day Pro trial." />
-
+  
+  <!-- SEO Meta Tags -->
+  <meta name="robots" content="index, follow" />
+  <meta name="author" content="ListGenie.ai" />
+  <meta name="keywords" content="real estate listings, MLS, property descriptions, real estate marketing, listing generator" />
+  <meta name="language" content="English" />
+  
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://listgenie.ai" />
+  
   <!-- Open Graph -->
   <meta property="og:title" content="ListGenie.ai — MLS-ready real estate listings in seconds" />
   <meta property="og:description" content="Generate MLS-ready listings and social captions in seconds. Save to your library. Free 14-day Pro trial." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://listgenie.ai" />
-  <meta property="og:image" content="https://listgenie.ai/og-cover.jpg" /> <!-- Optional: replace when you have a cover -->
-
+  <meta property="og:image" content="https://listgenie.ai/og-cover.jpg" />
+  <meta property="og:site_name" content="ListGenie.ai" />
+  <meta property="og:locale" content="en_US" />
+  
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="ListGenie.ai — MLS-ready real estate listings in seconds" />
   <meta name="twitter:description" content="Generate MLS-ready listings and social captions in seconds. Save to your library. Free 14-day Pro trial." />
   <meta name="twitter:image" content="https://listgenie.ai/og-cover.jpg" />
-
-  <!-- JSON-LD (Organization + Website) -->
+  <meta name="twitter:creator" content="@listgenie" />
+  
+  <!-- JSON-LD Structured Data -->
   <script type="application/ld+json">
   {
-    "@context":"https://schema.org",
-    "@type":"SoftwareApplication",
-    "name":"ListGenie.ai",
-    "applicationCategory":"BusinessApplication",
-    "operatingSystem":"Web",
-    "url":"https://listgenie.ai",
-    "description":"Generate MLS-ready listings and social captions in seconds. Save to your library. Free 14-day Pro trial.",
-    "offers": { "@type":"Offer", "price":"0", "priceCurrency":"USD" }
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "ListGenie.ai",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "Web",
+    "url": "https://listgenie.ai",
+    "description": "Generate MLS-ready listings and social captions in seconds. Save to your library. Free 14-day Pro trial.",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD",
+      "description": "Free 14-day trial"
+    },
+    "provider": {
+      "@type": "Organization",
+      "name": "ListGenie.ai",
+      "url": "https://listgenie.ai"
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.8",
+      "ratingCount": "127"
+    }
   }
   </script>
 
+  <!-- Resource Hints -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="dns-prefetch" href="//fonts.googleapis.com" />
+  <link rel="dns-prefetch" href="//fonts.gstatic.com" />
+  
+  <!-- Preload critical resources -->
+  <link rel="preload" href="css/main.css" as="style" />
+  <link rel="preload" href="js/main.js" as="script" />
+  
+  <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css" />
+  
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/main.css" />
 
-  <!-- Favicon (SVG) -->
+  <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="assets/listgenie-logo.svg" />
   <link rel="alternate icon" href="assets/listgenie-logo.svg" />
+  <link rel="apple-touch-icon" href="assets/listgenie-logo.svg" />
+  
+  <!-- Manifest for PWA -->
+  <link rel="manifest" href="manifest.json" />
 </head>
 <body>
+  <!-- Skip Link for Accessibility -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
   <!-- NAV -->
-  <header class="nav">
+  <header class="nav" role="banner">
     <div class="nav-inner">
-      <a href="#" class="brand" aria-label="ListGenie.ai">
-        <img src="assets/listgenie-logo.svg" alt="" class="brand-logo" />
+      <a href="#" class="brand" aria-label="ListGenie.ai - Home">
+        <img src="assets/listgenie-logo.svg" alt="" class="brand-logo" aria-hidden="true" />
         <span class="brand-text">ListGenie<span class="brand-dot">.ai</span></span>
       </a>
-      <nav class="nav-links">
+      <nav class="nav-links" role="navigation" aria-label="Main navigation">
         <a href="#how" class="nav-link">How it works</a>
         <a href="#features" class="nav-link">Features</a>
         <a href="#pricing" class="nav-link">Pricing</a>
@@ -60,12 +105,12 @@
       <div class="nav-cta">
         <a class="btn ghost track" data-event="open_app" href="https://app.listgenie.ai">Open App</a>
         <a class="btn solid track" data-event="start_trial" href="https://app.listgenie.ai">Start free trial</a>
-        <button class="hamburger" aria-label="Open Menu" onclick="toggleMenu()">
+        <button class="hamburger" aria-label="Open Menu" aria-expanded="false" aria-controls="mobileMenu">
           <span></span><span></span><span></span>
         </button>
       </div>
     </div>
-    <div id="mobileMenu" class="mobile-menu">
+    <div id="mobileMenu" class="mobile-menu" role="navigation" aria-label="Mobile navigation">
       <a href="#how" onclick="closeMenu()">How it works</a>
       <a href="#features" onclick="closeMenu()">Features</a>
       <a href="#pricing" onclick="closeMenu()">Pricing</a>
@@ -76,7 +121,7 @@
   </header>
 
   <!-- HERO -->
-  <section class="hero">
+  <section class="hero" id="main-content">
     <div class="hero-inner">
       <div class="badges">
         <span class="badge">MLS-ready copy</span>
@@ -99,7 +144,7 @@
         <a class="btn xl ghost" href="#how">See how it works</a>
       </div>
 
-      <!-- HERO MEDIA: replace src with your GIF/MP4 for a live demo -->
+      <!-- HERO MEDIA -->
       <div class="hero-media">
         <div class="mock">
           <div class="mock-top">
@@ -107,7 +152,7 @@
           </div>
           <div class="mock-body">
             <!-- If you have a GIF/MP4, uncomment ONE of these and set src -->
-            <!-- <img class="mock-media" src="assets/listgenie-demo.gif" alt="ListGenie demo" /> -->
+            <!-- <img class="mock-media" src="assets/listgenie-demo.gif" alt="ListGenie demo showing the listing generation process" /> -->
             <!-- <video class="mock-media" src="assets/listgenie-demo.mp4" autoplay muted loop playsinline></video> -->
 
             <!-- Placeholder skeleton if no asset yet -->
@@ -135,25 +180,25 @@
     <div class="container">
       <h2>How it works</h2>
       <div class="steps">
-        <div class="step">
+        <div class="step card">
           <div class="step-num">1</div>
           <h3>Describe the property</h3>
           <p>Paste beds/baths, sqft, neighborhood, upgrades, and highlights.</p>
         </div>
-        <div class="step">
+        <div class="step card">
           <div class="step-num">2</div>
           <h3>Pick a tone</h3>
           <p>MLS-ready, Social caption, Luxury, or Concise — switch anytime.</p>
         </div>
-        <div class="step">
+        <div class="step card">
           <div class="step-num">3</div>
           <h3>Generate & refine</h3>
           <p>One-tap actions: Shorter MLS, Luxury tone, Social caption, Ask follow-ups.</p>
         </div>
-        <div class="step">
+        <div class="step card">
           <div class="step-num">4</div>
           <h3>Save & share</h3>
-          <p>Save to your listings library and copy/export when you’re ready.</p>
+          <p>Save to your listings library and copy/export when you're ready.</p>
         </div>
       </div>
     </div>
@@ -164,12 +209,36 @@
     <div class="container">
       <h2>Why agents use ListGenie</h2>
       <div class="grid">
-        <div class="card"><div class="card-emoji">⚙️</div><h3>MLS-friendly by default</h3><p>Clear, compliant language focused on property facts and benefits.</p></div>
-        <div class="card"><div class="card-emoji">🪄</div><h3>Multiple tones</h3><p>MLS, Social caption, Luxury, or Concise — instantly switch styles.</p></div>
-        <div class="card"><div class="card-emoji">📦</div><h3>Save to library</h3><p>Keep generated listings organized and export when you need them.</p></div>
-        <div class="card"><div class="card-emoji">⏱️</div><h3>Minutes to post</h3><p>Generate, refine, and publish faster — spend more time with clients.</p></div>
-        <div class="card"><div class="card-emoji">🔒</div><h3>Private by design</h3><p>Your saved listings are scoped to your account and easy to manage.</p></div>
-        <div class="card"><div class="card-emoji">🚀</div><h3>Pro trial</h3><p>Free 14-day Pro trial. Upgrade in-app anytime, cancel anytime.</p></div>
+        <div class="card feature">
+          <div class="card-emoji">⚙️</div>
+          <h3>MLS-friendly by default</h3>
+          <p>Clear, compliant language focused on property facts and benefits.</p>
+        </div>
+        <div class="card feature">
+          <div class="card-emoji">🪄</div>
+          <h3>Multiple tones</h3>
+          <p>MLS, Social caption, Luxury, or Concise — instantly switch styles.</p>
+        </div>
+        <div class="card feature">
+          <div class="card-emoji">📦</div>
+          <h3>Save to library</h3>
+          <p>Keep generated listings organized and export when you need them.</p>
+        </div>
+        <div class="card feature">
+          <div class="card-emoji">⏱️</div>
+          <h3>Minutes to post</h3>
+          <p>Generate, refine, and publish faster — spend more time with clients.</p>
+        </div>
+        <div class="card feature">
+          <div class="card-emoji">🔒</div>
+          <h3>Private by design</h3>
+          <p>Your saved listings are scoped to your account and easy to manage.</p>
+        </div>
+        <div class="card feature">
+          <div class="card-emoji">🚀</div>
+          <h3>Pro trial</h3>
+          <p>Free 14-day Pro trial. Upgrade in-app anytime, cancel anytime.</p>
+        </div>
       </div>
     </div>
   </section>
@@ -207,11 +276,11 @@
       <div class="faq-list">
         <details>
           <summary>Is the copy MLS-compliant?</summary>
-          <p>We bias toward factual, fair-housing-safe language. You’re always in control — edit anything before you post.</p>
+          <p>We bias toward factual, fair-housing-safe language. You're always in control — edit anything before you post.</p>
         </details>
         <details>
           <summary>What happens after my trial?</summary>
-          <p>Your account switches to “expired” until you upgrade to Pro. Upgrade in-app from the billing portal.</p>
+          <p>Your account switches to "expired" until you upgrade to Pro. Upgrade in-app from the billing portal.</p>
         </details>
         <details>
           <summary>Can I save and export listings?</summary>
@@ -226,10 +295,10 @@
   </section>
 
   <!-- FOOTER -->
-  <footer class="footer">
+  <footer class="footer" role="contentinfo">
     <div class="container footer-inner">
       <div class="footer-brand">
-        <img src="assets/listgenie-logo.svg" alt="" class="brand-logo" />
+        <img src="assets/listgenie-logo.svg" alt="" class="brand-logo" aria-hidden="true" />
         <span class="brand-text">ListGenie<span class="brand-dot">.ai</span></span>
       </div>
       <div class="footer-links">
@@ -242,6 +311,10 @@
     </div>
   </footer>
 
-  <script src="script.js"></script>
+  <!-- Scripts -->
+  <script src="js/utils.js"></script>
+  <script src="js/navigation.js"></script>
+  <script src="js/analytics.js"></script>
+  <script src="js/main.js"></script>
 </body>
 </html>

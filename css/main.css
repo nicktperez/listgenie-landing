@@ -1,0 +1,129 @@
+/* Main CSS - ListGenie Landing Page */
+
+/* Base styles */
+@import 'base.css';
+
+/* Components */
+@import 'components/nav.css';
+@import 'components/hero.css';
+@import 'components/cards.css';
+@import 'components/buttons.css';
+
+/* Layouts */
+@import 'layouts/sections.css';
+@import 'layouts/grid.css';
+
+/* Utilities */
+@import 'utilities/spacing.css';
+@import 'utilities/typography.css';
+
+/* Additional global styles */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg2);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--line);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255,255,255,.2);
+}
+
+/* Selection styles */
+::selection {
+  background: var(--brand-soft);
+  color: var(--fg);
+}
+
+/* Animations */
+.animate-on-scroll {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.animate-on-scroll.animate-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.fade-in-up {
+  animation: fadeInUp 0.6s ease forwards;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Notification styles */
+.notification {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  padding: var(--spacing-md);
+  border-radius: var(--radius-md);
+  color: white;
+  font-weight: 500;
+  z-index: 1000;
+  animation: slideInRight 0.3s ease;
+}
+
+.notification-info {
+  background: var(--brand);
+}
+
+.notification-success {
+  background: var(--ok);
+}
+
+.notification-error {
+  background: #dc2626;
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Print styles */
+@media print {
+  .nav,
+  .hero-cta,
+  .footer {
+    display: none;
+  }
+  
+  body {
+    background: white;
+    color: black;
+  }
+  
+  .card {
+    border: 1px solid #ccc;
+    background: white;
+  }
+}
