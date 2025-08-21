@@ -1,15 +1,16 @@
+/* Force light theme by default - override any system preferences */
 :root {
   /* Light Theme (Default) */
-  --bg: #ffffff;
-  --bg2: #f8fafc;
-  --fg: #0f172a;
-  --fg-dim: #475569;
-  --muted: #64748b;
-  --card: #ffffff;
-  --line: rgba(0, 0, 0, 0.08);
-  --brand: #00b4a6;
-  --brand-soft: rgba(0, 180, 166, 0.1);
-  --ok: #10b981;
+  --bg: #ffffff !important;
+  --bg2: #f8fafc !important;
+  --fg: #0f172a !important;
+  --fg-dim: #475569 !important;
+  --muted: #64748b !important;
+  --card: #ffffff !important;
+  --line: rgba(0, 0, 0, 0.08) !important;
+  --brand: #00b4a6 !important;
+  --brand-soft: rgba(0, 180, 166, 0.1) !important;
+  --ok: #10b981 !important;
   
   /* Spacing */
   --spacing-xs: 4px;
@@ -32,7 +33,7 @@
   --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
 }
 
-/* Dark Theme */
+/* Dark Theme - Only applied when explicitly set */
 [data-theme="dark"] {
   --bg: #0a0f1a;
   --bg2: #0f1624;
@@ -46,9 +47,9 @@
   --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
 }
 
-/* System preference detection */
+/* System preference detection - Only apply if no explicit theme is set AND user hasn't made a choice */
 @media (prefers-color-scheme: dark) {
-  :root:not([data-theme]) {
+  :root:not([data-theme]):not([data-theme-set]) {
     --bg: #0a0f1a;
     --bg2: #0f1624;
     --fg: #e8f0f8;

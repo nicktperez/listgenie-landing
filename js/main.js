@@ -7,6 +7,11 @@ class ListGenieApp {
   }
   
   init() {
+    console.log('=== ListGenie App Initializing ===');
+    
+    // Clear any existing theme preferences to ensure fresh start
+    this.clearExistingTheme();
+    
     this.setupThemeToggle();
     this.setupEventListeners();
     this.setupAnimations();
@@ -16,6 +21,25 @@ class ListGenieApp {
     setTimeout(() => {
       this.setupInteractivePreview();
     }, 100);
+    
+    console.log('=== ListGenie App Initialized ===');
+  }
+
+  clearExistingTheme() {
+    // Remove any existing theme attributes
+    document.documentElement.removeAttribute('data-theme');
+    document.documentElement.removeAttribute('data-theme-set');
+    
+    // Clear localStorage theme preference to start fresh
+    localStorage.removeItem('listgenie-theme');
+    
+    console.log('Cleared existing theme preferences');
+    
+    // Test CSS variables
+    const computedStyle = getComputedStyle(document.documentElement);
+    const bgColor = computedStyle.getPropertyValue('--bg');
+    const fgColor = computedStyle.getPropertyValue('--fg');
+    console.log('CSS Variables - Background:', bgColor, 'Foreground:', fgColor);
   }
   
   setupThemeToggle() {
@@ -27,22 +51,29 @@ class ListGenieApp {
 
     console.log('Setting up theme toggle...');
 
-    // Check for saved theme preference or default to system preference
+    // Check for saved theme preference
     const savedTheme = localStorage.getItem('listgenie-theme');
     const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
     
     console.log('Saved theme:', savedTheme);
     console.log('System prefers dark:', systemPrefersDark);
     
-    if (savedTheme) {
-      document.documentElement.setAttribute('data-theme', savedTheme);
-      console.log('Applied saved theme:', savedTheme);
-    } else if (systemPrefersDark) {
+    // Default to light mode unless user has explicitly chosen dark
+    if (savedTheme === 'dark') {
       document.documentElement.setAttribute('data-theme', 'dark');
-      console.log('Applied system dark theme');
+      console.log('Applied saved dark theme');
+    } else if (savedTheme === 'light') {
+      document.documentElement.removeAttribute('data-theme');
+      console.log('Applied saved light theme');
     } else {
+      // No saved preference - default to light mode
+      document.documentElement.removeAttribute('data-theme');
+      localStorage.setItem('listgenie-theme', 'light');
       console.log('Using default light theme');
     }
+
+    // Mark that we've set a theme preference
+    document.documentElement.setAttribute('data-theme-set', 'true');
 
     // Update theme toggle icon
     this.updateThemeIcon();
@@ -54,17 +85,10 @@ class ListGenieApp {
       this.toggleTheme();
     });
 
-    // Listen for system theme changes
+    // Listen for system theme changes (but don't auto-apply)
     window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
-      if (!localStorage.getItem('listgenie-theme')) {
-        console.log('System theme changed to:', e.matches ? 'dark' : 'light');
-        if (e.matches) {
-          document.documentElement.setAttribute('data-theme', 'dark');
-        } else {
-          document.documentElement.removeAttribute('data-theme');
-        }
-        this.updateThemeIcon();
-      }
+      console.log('System theme changed to:', e.matches ? 'dark' : 'light');
+      // Don't auto-apply system changes - user must explicitly choose
     });
   }
 
@@ -72,12 +96,16 @@ class ListGenieApp {
     const currentTheme = document.documentElement.getAttribute('data-theme');
     const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
     
+    console.log('Toggling theme from', currentTheme, 'to', newTheme);
+    
     if (newTheme === 'light') {
       document.documentElement.removeAttribute('data-theme');
       localStorage.setItem('listgenie-theme', 'light');
+      console.log('Applied light theme');
     } else {
       document.documentElement.setAttribute('data-theme', newTheme);
       localStorage.setItem('listgenie-theme', newTheme);
+      console.log('Applied dark theme');
     }
     
     this.updateThemeIcon();
@@ -111,6 +139,18 @@ class ListGenieApp {
 
     // Update theme color meta tag
     this.updateThemeColor(isDark);
+    
+    // Update theme indicator
+    this.updateThemeIndicator();
+  }
+
+  updateThemeIndicator() {
+    const themeStatus = document.getElementById('theme-status');
+    if (themeStatus) {
+      const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
+      themeStatus.textContent = currentTheme;
+      console.log('Theme indicator updated:', currentTheme);
+    }
   }
 
   updateThemeColor(isDark) {
