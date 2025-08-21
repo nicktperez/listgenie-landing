@@ -47,11 +47,26 @@
 .card.feature {
   text-align: center;
   padding: var(--spacing-lg);
+  position: relative;
 }
 
 .card.feature .card-emoji {
   font-size: 32px;
   margin-bottom: var(--spacing-md);
+}
+
+.card.feature.pro-feature::after {
+  content: 'PRO';
+  position: absolute;
+  top: var(--spacing-sm);
+  right: var(--spacing-sm);
+  background: var(--brand);
+  color: white;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: var(--radius-sm);
+  letter-spacing: 0.5px;
 }
 
 .card.step {
@@ -159,6 +174,16 @@
   margin-top: 10px;
   text-align: center;
   line-height: 1.4;
+}
+
+.price-list li strong {
+  color: var(--brand);
+  font-weight: 700;
+}
+
+.price-list li:has(strong) {
+  color: var(--fg);
+  font-weight: 500;
 }
 
 /* FAQ cards */

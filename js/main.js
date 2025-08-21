@@ -430,6 +430,9 @@ class ListGenieApp {
             <p>${hasBeds ? 'Beautiful' : 'Stunning'} ${hasBeds ? 'bedroom' : 'property'} featuring ${hasKitchen ? 'recently updated' : 'modern'} finishes and ${hasSqft ? 'generous square footage' : 'excellent value'}. ${hasKitchen ? 'The kitchen has been thoughtfully designed with premium appliances, custom cabinetry, and ample storage space.' : 'This property offers excellent value and location for discerning buyers.'}</p>
             <p>${hasNeighborhood ? 'Located in a highly desirable neighborhood' : 'Situated in a prime location'} with easy access to amenities, schools, and transportation. ${hasGarage ? 'The attached garage provides convenient parking and additional storage.' : ''} ${hasYard ? 'The private yard offers outdoor living space perfect for entertaining.' : ''} ${hasSqft ? 'Spacious layout perfect for families or professionals seeking room to grow.' : 'Ideal for those seeking quality and convenience in today\'s market.'}</p>
             <p>Don't miss this opportunity to own a home that combines comfort, style, and location. Schedule your private showing today!</p>
+            <div class="premium-features">
+              <p><strong>💎 Pro Feature:</strong> Create professional listing flyers and open house materials with ListGenie Pro!</p>
+            </div>
           </div>
         `;
         break;
@@ -442,6 +445,9 @@ class ListGenieApp {
             <p>${hasKitchen ? '✨ Dream kitchen alert ✨' : '💎 This one won\'t last long!'} ${hasNeighborhood ? '📍 Prime location in an amazing neighborhood' : '📍 Location, location, location!'} ${hasYard ? '🌳 Private outdoor space perfect for summer BBQs' : ''}</p>
             <p>${hasGarage ? '🚗 Attached garage for easy parking' : ''} ${hasSqft ? '📏 Tons of space to grow into' : ''} This is the one you've been waiting for!</p>
             <p>DM me for a private showing! 📱 #RealEstate #JustListed #${hasKitchen ? 'Updated' : 'Beautiful'}Home #${hasNeighborhood ? 'GreatLocation' : 'DreamHome'}</p>
+            <div class="premium-features">
+              <p><strong>💎 Pro Feature:</strong> Generate open house announcements and listing flyers with ListGenie Pro!</p>
+            </div>
           </div>
         `;
         break;
@@ -453,6 +459,9 @@ class ListGenieApp {
             <p>Exquisite ${hasBeds ? 'bedroom' : 'residence'} showcasing ${hasKitchen ? 'sophisticated renovations' : 'unparalleled craftsmanship'} and timeless elegance. ${hasKitchen ? 'The chef-inspired kitchen features premium materials, state-of-the-art appliances, and custom details that define luxury living.' : 'Every detail has been carefully curated to create an atmosphere of refined luxury and sophistication.'}</p>
             <p>${hasNeighborhood ? 'Nestled in an exclusive neighborhood' : 'Positioned in a prestigious location'} where luxury meets convenience and privacy. ${hasGarage ? 'The elegant garage provides secure parking and additional storage solutions.' : ''} ${hasYard ? 'The meticulously landscaped grounds offer a private sanctuary for outdoor entertaining and relaxation.' : ''} ${hasSqft ? 'Generous proportions provide the perfect canvas for sophisticated living and entertaining.' : 'This exceptional property represents the pinnacle of luxury real estate.'}</p>
             <p>For the discerning buyer who demands nothing but the finest, this residence offers an unparalleled opportunity to experience luxury living at its most refined.</p>
+            <div class="premium-features">
+              <p><strong>💎 Pro Feature:</strong> Design luxury open house materials and premium listing flyers with ListGenie Pro!</p>
+            </div>
           </div>
         `;
         break;
