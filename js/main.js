@@ -115,6 +115,12 @@ class ListGenieApp {
     document.documentElement.style.setProperty('background-color', '#ffffff', 'important');
     document.body.style.setProperty('background-color', '#ffffff', 'important');
     
+    // Force all main containers
+    const mainContainers = document.querySelectorAll('main, .main, #main, .container, .content');
+    mainContainers.forEach(container => {
+      container.style.setProperty('background-color', '#ffffff', 'important');
+    });
+    
     // Apply to navigation
     const nav = document.querySelector('.nav');
     if (nav) {
@@ -195,6 +201,16 @@ class ListGenieApp {
       input.style.setProperty('color', '#0f172a', 'important');
     });
     
+    // Force all divs to have light background
+    const allDivs = document.querySelectorAll('div');
+    allDivs.forEach(div => {
+      // Skip buttons and specific elements
+      if (!div.closest('.btn') && !div.closest('button') && !div.classList.contains('btn')) {
+        div.style.setProperty('background-color', '#ffffff', 'important');
+        div.style.setProperty('color', '#0f172a', 'important');
+      }
+    });
+    
     // Additional targeting for common elements
     this.updateAdditionalElements('light');
     
@@ -212,6 +228,12 @@ class ListGenieApp {
     // Force HTML and body background
     document.documentElement.style.setProperty('background-color', '#0a0f1a', 'important');
     document.body.style.setProperty('background-color', '#0a0f1a', 'important');
+    
+    // Force all main containers
+    const mainContainers = document.querySelectorAll('main, .main, #main, .container, .content');
+    mainContainers.forEach(container => {
+      container.style.setProperty('background-color', '#0a0f1a', 'important');
+    });
     
     // Apply to navigation
     const nav = document.querySelector('.nav');
@@ -293,6 +315,16 @@ class ListGenieApp {
       input.style.setProperty('color', '#e8f0f8', 'important');
     });
     
+    // Force all divs to have dark background
+    const allDivs = document.querySelectorAll('div');
+    allDivs.forEach(div => {
+      // Skip buttons and specific elements
+      if (!div.closest('.btn') && !div.closest('button') && !div.classList.contains('btn')) {
+        div.style.setProperty('background-color', '#0a0f1a', 'important');
+        div.style.setProperty('color', '#e8f0f8', 'important');
+      }
+    });
+    
     // Additional targeting for common elements
     this.updateAdditionalElements('dark');
     
@@ -339,7 +371,56 @@ class ListGenieApp {
       });
     });
     
+    // Find and fix any remaining dark elements
+    this.findAndFixDarkElements(theme);
+    
     console.log(`Updated additional elements for ${theme} theme`);
+  }
+
+  findAndFixDarkElements(theme) {
+    const isLight = theme === 'light';
+    const targetColor = isLight ? '#0f172a' : '#e8f0f8';
+    const targetBg = isLight ? '#ffffff' : '#0a0f1a';
+    
+    // Find all elements with computed styles that might be dark
+    const allElements = document.querySelectorAll('*');
+    let fixedCount = 0;
+    
+    allElements.forEach(el => {
+      if (el === document.body || el === document.documentElement) return;
+      
+      const computedStyle = window.getComputedStyle(el);
+      const bgColor = computedStyle.backgroundColor;
+      const textColor = computedStyle.color;
+      
+      // Check if element has dark background or light text (indicating dark mode)
+      if (isLight) {
+        // If we're switching to light mode, look for dark elements
+        if (bgColor.includes('rgb(10, 15, 26)') || bgColor.includes('rgb(20, 28, 42)') || 
+            bgColor.includes('rgba(10, 15, 26') || bgColor.includes('rgba(20, 28, 42')) {
+          el.style.setProperty('background-color', targetBg, 'important');
+          fixedCount++;
+        }
+        if (textColor.includes('rgb(232, 240, 248)') || textColor.includes('rgba(232, 240, 248')) {
+          el.style.setProperty('color', targetColor, 'important');
+          fixedCount++;
+        }
+      } else {
+        // If we're switching to dark mode, look for light elements
+        if (bgColor.includes('rgb(255, 255, 255)') || bgColor.includes('rgba(255, 255, 255')) {
+          el.style.setProperty('background-color', targetBg, 'important');
+          fixedCount++;
+        }
+        if (textColor.includes('rgb(15, 23, 42)') || textColor.includes('rgba(15, 23, 42')) {
+          el.style.setProperty('color', targetColor, 'important');
+          fixedCount++;
+        }
+      }
+    });
+    
+    if (fixedCount > 0) {
+      console.log(`Found and fixed ${fixedCount} remaining dark/light elements`);
+    }
   }
 
   updateThemeIcon() {
