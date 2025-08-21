@@ -3,9 +3,14 @@
 // Main application class
 class ListGenieApp {
   constructor() {
-    this.init();
+    // Wait for DOM to be ready before initializing
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', () => this.init());
+    } else {
+      this.init();
+    }
   }
-  
+
   init() {
     console.log('=== ListGenie App Initializing ===');
     
@@ -34,12 +39,6 @@ class ListGenieApp {
     localStorage.removeItem('listgenie-theme');
     
     console.log('Cleared existing theme preferences');
-    
-    // Test CSS variables
-    const computedStyle = getComputedStyle(document.documentElement);
-    const bgColor = computedStyle.getPropertyValue('--bg');
-    const fgColor = computedStyle.getPropertyValue('--fg');
-    console.log('CSS Variables - Background:', bgColor, 'Foreground:', fgColor);
   }
   
   setupThemeToggle() {
@@ -53,27 +52,19 @@ class ListGenieApp {
 
     // Check for saved theme preference
     const savedTheme = localStorage.getItem('listgenie-theme');
-    const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
     
     console.log('Saved theme:', savedTheme);
-    console.log('System prefers dark:', systemPrefersDark);
     
     // Default to light mode unless user has explicitly chosen dark
     if (savedTheme === 'dark') {
       document.documentElement.setAttribute('data-theme', 'dark');
       console.log('Applied saved dark theme');
-    } else if (savedTheme === 'light') {
-      document.documentElement.removeAttribute('data-theme');
-      console.log('Applied saved light theme');
     } else {
-      // No saved preference - default to light mode
+      // No saved preference or light preference - default to light mode
       document.documentElement.removeAttribute('data-theme');
       localStorage.setItem('listgenie-theme', 'light');
       console.log('Using default light theme');
     }
-
-    // Mark that we've set a theme preference
-    document.documentElement.setAttribute('data-theme-set', 'true');
 
     // Update theme toggle icon
     this.updateThemeIcon();
@@ -81,15 +72,12 @@ class ListGenieApp {
     // Listen for theme toggle clicks
     themeToggle.addEventListener('click', (e) => {
       e.preventDefault();
+      e.stopPropagation();
       console.log('Theme toggle clicked');
       this.toggleTheme();
     });
 
-    // Listen for system theme changes (but don't auto-apply)
-    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
-      console.log('System theme changed to:', e.matches ? 'dark' : 'light');
-      // Don't auto-apply system changes - user must explicitly choose
-    });
+    console.log('Theme toggle setup complete');
   }
 
   toggleTheme() {
@@ -103,26 +91,29 @@ class ListGenieApp {
       localStorage.setItem('listgenie-theme', 'light');
       console.log('Applied light theme');
     } else {
-      document.documentElement.setAttribute('data-theme', newTheme);
-      localStorage.setItem('listgenie-theme', newTheme);
+      document.documentElement.setAttribute('data-theme', 'dark');
+      localStorage.setItem('listgenie-theme', 'dark');
       console.log('Applied dark theme');
     }
     
+    // Force a repaint to ensure CSS changes are applied
+    document.body.offsetHeight;
+    
     this.updateThemeIcon();
     
-    // Track theme change
-    if (window.analytics) {
-      window.analytics.trackEvent('theme_changed', { theme: newTheme });
-    }
+    // Test if the theme actually changed
+    setTimeout(() => {
+      const actualTheme = document.documentElement.getAttribute('data-theme') || 'light';
+      console.log('Theme after toggle:', actualTheme);
+      console.log('Background color should be:', actualTheme === 'dark' ? 'dark' : 'white');
+    }, 100);
   }
 
   updateThemeIcon() {
     const themeToggle = document.querySelector('.theme-toggle');
     if (!themeToggle) return;
 
-    const isDark = document.documentElement.getAttribute('data-theme') === 'dark' || 
-                   (!document.documentElement.getAttribute('data-theme') && 
-                    window.matchMedia('(prefers-color-scheme: dark)').matches);
+    const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
 
     const sunIcon = themeToggle.querySelector('.sun-icon');
     const moonIcon = themeToggle.querySelector('.moon-icon');
@@ -139,18 +130,6 @@ class ListGenieApp {
 
     // Update theme color meta tag
     this.updateThemeColor(isDark);
-    
-    // Update theme indicator
-    this.updateThemeIndicator();
-  }
-
-  updateThemeIndicator() {
-    const themeStatus = document.getElementById('theme-status');
-    if (themeStatus) {
-      const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
-      themeStatus.textContent = currentTheme;
-      console.log('Theme indicator updated:', currentTheme);
-    }
   }
 
   updateThemeColor(isDark) {

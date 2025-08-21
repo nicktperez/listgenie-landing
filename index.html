@@ -113,7 +113,6 @@
             <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </button>
-        <button onclick="console.log('Debug: Current theme:', document.documentElement.getAttribute('data-theme')); console.log('Debug: localStorage:', localStorage.getItem('listgenie-theme'));" style="background: #ff6b6b; color: white; border: none; padding: 4px 8px; border-radius: 4px; font-size: 12px; cursor: pointer;">Debug</button>
         <a href="#pricing" class="btn btn-ghost">Pricing</a>
         <a href="https://app.listgenie.ai" class="btn btn-solid">Start Free Trial</a>
         <button class="hamburger" aria-label="Open Menu" aria-expanded="false" aria-controls="mobileMenu">
@@ -131,11 +130,6 @@
     </div>
   </header>
   
-  <!-- Theme Test Indicator -->
-  <div id="theme-test" style="position: fixed; top: 10px; left: 10px; background: #ff6b6b; color: white; padding: 8px; border-radius: 4px; font-size: 12px; z-index: 1000;">
-    Theme: <span id="theme-status">Loading...</span>
-  </div>
-
   <!-- HERO -->
   <section class="hero" id="main-content">
     <div class="hero-inner">
@@ -395,39 +389,9 @@
   </footer>
 
   <!-- Scripts -->
-  <script src="js/utils.js"></script>
-  <script src="js/navigation.js"></script>
-  <script src="js/analytics.js"></script>
-  <script src="js/main.js"></script>
-  <script>
-    // Simple test to verify theme toggle
-    document.addEventListener('DOMContentLoaded', function() {
-      console.log('DOM loaded - testing theme toggle');
-      
-      // Test if we can find the theme toggle
-      const themeToggle = document.querySelector('.theme-toggle');
-      console.log('Theme toggle found:', !!themeToggle);
-      
-      if (themeToggle) {
-        // Test click event
-        themeToggle.addEventListener('click', function(e) {
-          console.log('Theme toggle clicked!');
-          e.preventDefault();
-          
-          // Simple toggle test
-          const currentTheme = document.documentElement.getAttribute('data-theme');
-          const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-          
-          if (newTheme === 'light') {
-            document.documentElement.removeAttribute('data-theme');
-            console.log('Switched to light theme');
-          } else {
-            document.documentElement.setAttribute('data-theme', 'dark');
-            console.log('Switched to dark theme');
-          }
-        });
-      }
-    });
-  </script>
+  <script src="js/utils.js?v=2"></script>
+  <script src="js/navigation.js?v=2"></script>
+  <script src="js/analytics.js?v=2"></script>
+  <script src="js/main.js?v=2"></script>
 </body>
 </html>
