@@ -58,11 +58,13 @@ class ListGenieApp {
     // Default to light mode unless user has explicitly chosen dark
     if (savedTheme === 'dark') {
       document.documentElement.setAttribute('data-theme', 'dark');
+      this.applyDarkTheme();
       console.log('Applied saved dark theme');
     } else {
       // No saved preference or light preference - default to light mode
       document.documentElement.removeAttribute('data-theme');
       localStorage.setItem('listgenie-theme', 'light');
+      this.applyLightTheme();
       console.log('Using default light theme');
     }
 
@@ -89,86 +91,124 @@ class ListGenieApp {
     if (newTheme === 'light') {
       document.documentElement.removeAttribute('data-theme');
       localStorage.setItem('listgenie-theme', 'light');
+      this.applyLightTheme();
       console.log('Applied light theme');
     } else {
       document.documentElement.setAttribute('data-theme', 'dark');
       localStorage.setItem('listgenie-theme', 'dark');
+      this.applyDarkTheme();
       console.log('Applied dark theme');
     }
     
-    // Force CSS refresh
-    this.forceCSSRefresh();
-    
-    // Force a repaint to ensure CSS changes are applied
-    document.body.offsetHeight;
-    
     this.updateThemeIcon();
-    
-    // Test if the theme actually changed
-    setTimeout(() => {
-      const actualTheme = document.documentElement.getAttribute('data-theme') || 'light';
-      console.log('Theme after toggle:', actualTheme);
-      
-      // Check CSS variables
-      const computedStyle = getComputedStyle(document.documentElement);
-      const bgColor = computedStyle.getPropertyValue('--bg');
-      const fgColor = computedStyle.getPropertyValue('--fg');
-      console.log('CSS Variables after toggle - Background:', bgColor, 'Foreground:', fgColor);
-      
-      // Check if the page actually looks different
-      const bodyBg = getComputedStyle(document.body).backgroundColor;
-      console.log('Body background color:', bodyBg);
-    }, 100);
   }
 
-  forceCSSRefresh() {
-    // Temporarily disable transitions
-    document.body.style.transition = 'none';
+  applyLightTheme() {
+    // Directly apply light theme styles
+    document.body.style.backgroundColor = '#ffffff';
+    document.body.style.color = '#0f172a';
     
-    // Force a repaint
-    document.body.offsetHeight;
-    
-    // Re-enable transitions
-    setTimeout(() => {
-      document.body.style.transition = '';
-    }, 50);
-    
-    // Add a temporary visual indicator
-    this.showThemeIndicator();
-  }
-
-  showThemeIndicator() {
-    const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
-    
-    // Create or update theme indicator
-    let indicator = document.getElementById('temp-theme-indicator');
-    if (!indicator) {
-      indicator = document.createElement('div');
-      indicator.id = 'temp-theme-indicator';
-      indicator.style.cssText = `
-        position: fixed;
-        top: 10px;
-        right: 10px;
-        background: #ff6b6b;
-        color: white;
-        padding: 8px;
-        border-radius: 4px;
-        font-size: 12px;
-        z-index: 1000;
-        font-family: monospace;
-      `;
-      document.body.appendChild(indicator);
+    // Apply to navigation
+    const nav = document.querySelector('.nav');
+    if (nav) {
+      nav.style.backgroundColor = 'rgba(255, 255, 255, 0.8)';
+      nav.style.borderBottomColor = 'rgba(0, 0, 0, 0.08)';
     }
     
-    indicator.textContent = `Theme: ${currentTheme}`;
-    indicator.style.background = currentTheme === 'dark' ? '#333' : '#ff6b6b';
+    // Apply to hero section
+    const hero = document.querySelector('.hero');
+    if (hero) {
+      hero.style.background = `
+        radial-gradient(1200px 500px at 50% -180px, rgba(0, 180, 166, 0.08), transparent 70%),
+        radial-gradient(800px 400px at 80% -180px, rgba(16, 185, 129, 0.06), transparent 60%)
+      `;
+    }
     
-    // Remove after 3 seconds
-    setTimeout(() => {
-      if (indicator && indicator.parentNode) {
-        indicator.parentNode.removeChild(indicator);
+    // Apply to cards
+    const cards = document.querySelectorAll('.card');
+    cards.forEach(card => {
+      card.style.backgroundColor = '#ffffff';
+      card.style.borderColor = 'rgba(0, 0, 0, 0.08)';
+      card.style.color = '#0f172a';
+    });
+    
+    // Apply to interactive preview
+    const preview = document.querySelector('.interactive-preview');
+    if (preview) {
+      preview.style.backgroundColor = '#ffffff';
+      preview.style.borderColor = 'rgba(0, 0, 0, 0.08)';
+      preview.style.color = '#0f172a';
+    }
+    
+    // Apply to textarea
+    const textarea = document.querySelector('textarea');
+    if (textarea) {
+      textarea.style.backgroundColor = '#f8fafc';
+      textarea.style.borderColor = 'rgba(0, 0, 0, 0.1)';
+      textarea.style.color = '#0f172a';
+    }
+    
+    // Apply to all text elements
+    const textElements = document.querySelectorAll('h1, h2, h3, h4, h5, h6, p, span, a, li');
+    textElements.forEach(el => {
+      if (!el.closest('.btn')) { // Don't change button text colors
+        el.style.color = '#0f172a';
       }
-    }, 3000);
+    });
+  }
+
+  applyDarkTheme() {
+    // Directly apply dark theme styles
+    document.body.style.backgroundColor = '#0a0f1a';
+    document.body.style.color = '#e8f0f8';
+    
+    // Apply to navigation
+    const nav = document.querySelector('.nav');
+    if (nav) {
+      nav.style.backgroundColor = 'rgba(10, 15, 26, 0.8)';
+      nav.style.borderBottomColor = 'rgba(255, 255, 255, 0.08)';
+    }
+    
+    // Apply to hero section
+    const hero = document.querySelector('.hero');
+    if (hero) {
+      hero.style.background = `
+        radial-gradient(1200px 500px at 50% -180px, rgba(0, 180, 166, 0.25), transparent 70%),
+        radial-gradient(800px 400px at 80% -180px, rgba(16, 185, 129, 0.2), transparent 60%)
+      `;
+    }
+    
+    // Apply to cards
+    const cards = document.querySelectorAll('.card');
+    cards.forEach(card => {
+      card.style.backgroundColor = '#141c2a';
+      card.style.borderColor = 'rgba(255, 255, 255, 0.08)';
+      card.style.color = '#e8f0f8';
+    });
+    
+    // Apply to interactive preview
+    const preview = document.querySelector('.interactive-preview');
+    if (preview) {
+      preview.style.backgroundColor = '#141c2a';
+      preview.style.borderColor = 'rgba(255, 255, 255, 0.08)';
+      preview.style.color = '#e8f0f8';
+    }
+    
+    // Apply to textarea
+    const textarea = document.querySelector('textarea');
+    if (textarea) {
+      textarea.style.backgroundColor = '#0a0f1a';
+      textarea.style.borderColor = 'rgba(255, 255, 255, 0.1)';
+      textarea.style.color = '#e8f0f8';
+    }
+    
+    // Apply to all text elements
+    const textElements = document.querySelectorAll('h1, h2, h3, h4, h5, h6, p, span, a, li');
+    textElements.forEach(el => {
+      if (!el.closest('.btn')) { // Don't change button text colors
+        el.style.color = '#e8f0f8';
+      }
+    });
   }
 
   updateThemeIcon() {
