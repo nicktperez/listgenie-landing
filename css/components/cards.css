@@ -20,15 +20,28 @@
   box-shadow: 0 0 0 3px rgba(124, 92, 255, 0.1);
 }
 
-.card-emoji {
-  font-size: 22px;
-  margin-bottom: 6px;
-  display: inline-block;
+.card-icon {
+  width: 48px;
+  height: 48px;
+  margin: 0 auto var(--spacing-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
   transition: var(--transition);
 }
 
-.card:hover .card-emoji {
+.card-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.card:hover .card-icon {
   transform: scale(1.1);
+}
+
+.card:hover .card-icon img {
+  filter: brightness(1.1);
 }
 
 .card h3 {
@@ -50,9 +63,28 @@
   position: relative;
 }
 
-.card.feature .card-emoji {
-  font-size: 32px;
-  margin-bottom: var(--spacing-md);
+.card.feature .card-icon {
+  width: 48px;
+  height: 48px;
+  margin: 0 auto var(--spacing-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition);
+}
+
+.card.feature .card-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.card.feature:hover .card-icon {
+  transform: scale(1.1);
+}
+
+.card.feature:hover .card-icon img {
+  filter: brightness(1.1);
 }
 
 .card.feature.pro-feature::after {
@@ -91,6 +123,28 @@
 .card:hover .step-num {
   background: var(--brand);
   color: white;
+  transform: scale(1.1);
+}
+
+.step-icon {
+  width: 32px;
+  height: 32px;
+  margin: 0 auto var(--spacing-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.7;
+  transition: var(--transition);
+}
+
+.step-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.step:hover .step-icon {
+  opacity: 1;
   transform: scale(1.1);
 }
 
