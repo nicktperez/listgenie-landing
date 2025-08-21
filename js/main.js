@@ -104,6 +104,8 @@ class ListGenieApp {
   }
 
   applyLightTheme() {
+    console.log('Applying light theme...');
+    
     // Directly apply light theme styles
     document.body.style.backgroundColor = '#ffffff';
     document.body.style.color = '#0f172a';
@@ -113,6 +115,7 @@ class ListGenieApp {
     if (nav) {
       nav.style.backgroundColor = 'rgba(255, 255, 255, 0.8)';
       nav.style.borderBottomColor = 'rgba(0, 0, 0, 0.08)';
+      console.log('Updated navigation to light theme');
     }
     
     // Apply to hero section
@@ -122,7 +125,15 @@ class ListGenieApp {
         radial-gradient(1200px 500px at 50% -180px, rgba(0, 180, 166, 0.08), transparent 70%),
         radial-gradient(800px 400px at 80% -180px, rgba(16, 185, 129, 0.06), transparent 60%)
       `;
+      console.log('Updated hero to light theme');
     }
+    
+    // Apply to all sections
+    const sections = document.querySelectorAll('section');
+    sections.forEach(section => {
+      section.style.backgroundColor = '#ffffff';
+      section.style.color = '#0f172a';
+    });
     
     // Apply to cards
     const cards = document.querySelectorAll('.card');
@@ -131,6 +142,7 @@ class ListGenieApp {
       card.style.borderColor = 'rgba(0, 0, 0, 0.08)';
       card.style.color = '#0f172a';
     });
+    console.log(`Updated ${cards.length} cards to light theme`);
     
     // Apply to interactive preview
     const preview = document.querySelector('.interactive-preview');
@@ -138,6 +150,7 @@ class ListGenieApp {
       preview.style.backgroundColor = '#ffffff';
       preview.style.borderColor = 'rgba(0, 0, 0, 0.08)';
       preview.style.color = '#0f172a';
+      console.log('Updated interactive preview to light theme');
     }
     
     // Apply to textarea
@@ -146,18 +159,45 @@ class ListGenieApp {
       textarea.style.backgroundColor = '#f8fafc';
       textarea.style.borderColor = 'rgba(0, 0, 0, 0.1)';
       textarea.style.color = '#0f172a';
+      console.log('Updated textarea to light theme');
     }
     
-    // Apply to all text elements
-    const textElements = document.querySelectorAll('h1, h2, h3, h4, h5, h6, p, span, a, li');
+    // Apply to all text elements more comprehensively
+    const textSelectors = 'h1, h2, h3, h4, h5, h6, p, span, a, li, label, div';
+    const textElements = document.querySelectorAll(textSelectors);
+    let updatedCount = 0;
     textElements.forEach(el => {
-      if (!el.closest('.btn')) { // Don't change button text colors
+      if (!el.closest('.btn') && !el.closest('button')) { // Don't change button text colors
         el.style.color = '#0f172a';
+        updatedCount++;
       }
     });
+    console.log(`Updated ${updatedCount} text elements to light theme`);
+    
+    // Apply to specific elements that might be missed
+    const badges = document.querySelectorAll('.badge');
+    badges.forEach(badge => {
+      badge.style.backgroundColor = 'rgba(255, 255, 255, 0.1)';
+      badge.style.borderColor = 'rgba(0, 0, 0, 0.1)';
+      badge.style.color = '#0f172a';
+    });
+    
+    const inputs = document.querySelectorAll('input, textarea, select');
+    inputs.forEach(input => {
+      input.style.backgroundColor = '#f8fafc';
+      input.style.borderColor = 'rgba(0, 0, 0, 0.1)';
+      input.style.color = '#0f172a';
+    });
+    
+    // Additional targeting for common elements
+    this.updateAdditionalElements('light');
+    
+    console.log('Light theme applied completely');
   }
 
   applyDarkTheme() {
+    console.log('Applying dark theme...');
+    
     // Directly apply dark theme styles
     document.body.style.backgroundColor = '#0a0f1a';
     document.body.style.color = '#e8f0f8';
@@ -167,6 +207,7 @@ class ListGenieApp {
     if (nav) {
       nav.style.backgroundColor = 'rgba(10, 15, 26, 0.8)';
       nav.style.borderBottomColor = 'rgba(255, 255, 255, 0.08)';
+      console.log('Updated navigation to dark theme');
     }
     
     // Apply to hero section
@@ -176,7 +217,15 @@ class ListGenieApp {
         radial-gradient(1200px 500px at 50% -180px, rgba(0, 180, 166, 0.25), transparent 70%),
         radial-gradient(800px 400px at 80% -180px, rgba(16, 185, 129, 0.2), transparent 60%)
       `;
+      console.log('Updated hero to dark theme');
     }
+    
+    // Apply to all sections
+    const sections = document.querySelectorAll('section');
+    sections.forEach(section => {
+      section.style.backgroundColor = '#0a0f1a';
+      section.style.color = '#e8f0f8';
+    });
     
     // Apply to cards
     const cards = document.querySelectorAll('.card');
@@ -185,6 +234,7 @@ class ListGenieApp {
       card.style.borderColor = 'rgba(255, 255, 255, 0.08)';
       card.style.color = '#e8f0f8';
     });
+    console.log(`Updated ${cards.length} cards to dark theme`);
     
     // Apply to interactive preview
     const preview = document.querySelector('.interactive-preview');
@@ -192,6 +242,7 @@ class ListGenieApp {
       preview.style.backgroundColor = '#141c2a';
       preview.style.borderColor = 'rgba(255, 255, 255, 0.08)';
       preview.style.color = '#e8f0f8';
+      console.log('Updated interactive preview to dark theme');
     }
     
     // Apply to textarea
@@ -200,15 +251,83 @@ class ListGenieApp {
       textarea.style.backgroundColor = '#0a0f1a';
       textarea.style.borderColor = 'rgba(255, 255, 255, 0.1)';
       textarea.style.color = '#e8f0f8';
+      console.log('Updated textarea to dark theme');
     }
     
-    // Apply to all text elements
-    const textElements = document.querySelectorAll('h1, h2, h3, h4, h5, h6, p, span, a, li');
+    // Apply to all text elements more comprehensively
+    const textSelectors = 'h1, h2, h3, h4, h5, h6, p, span, a, li, label, div';
+    const textElements = document.querySelectorAll(textSelectors);
+    let updatedCount = 0;
     textElements.forEach(el => {
-      if (!el.closest('.btn')) { // Don't change button text colors
+      if (!el.closest('.btn') && !el.closest('button')) { // Don't change button text colors
         el.style.color = '#e8f0f8';
+        updatedCount++;
       }
     });
+    console.log(`Updated ${updatedCount} text elements to dark theme`);
+    
+    // Apply to specific elements that might be missed
+    const badges = document.querySelectorAll('.badge');
+    badges.forEach(badge => {
+      badge.style.backgroundColor = 'rgba(255, 255, 255, 0.1)';
+      badge.style.borderColor = 'rgba(255, 255, 255, 0.1)';
+      badge.style.color = '#e8f0f8';
+    });
+    
+    const inputs = document.querySelectorAll('input, textarea, select');
+    inputs.forEach(input => {
+      input.style.backgroundColor = '#0a0f1a';
+      input.style.borderColor = 'rgba(255, 255, 255, 0.1)';
+      input.style.color = '#e8f0f8';
+    });
+    
+    // Additional targeting for common elements
+    this.updateAdditionalElements('dark');
+    
+    console.log('Dark theme applied completely');
+  }
+
+  updateAdditionalElements(theme) {
+    const isLight = theme === 'light';
+    
+    // Target specific classes that might be missed
+    const additionalSelectors = [
+      '.nav-links a',
+      '.nav-brand a',
+      '.hero-caption',
+      '.hero-badges .badge',
+      '.preview-header',
+      '.property-input',
+      '.tone-selector',
+      '.example-btn',
+      '.generate-btn',
+      '.preview-output',
+      '.output-placeholder',
+      '.generated-content',
+      '.premium-features',
+      '.pro-cta'
+    ];
+    
+    additionalSelectors.forEach(selector => {
+      const elements = document.querySelectorAll(selector);
+      elements.forEach(el => {
+        if (isLight) {
+          el.style.color = '#0f172a';
+          if (el.classList.contains('badge')) {
+            el.style.backgroundColor = 'rgba(255, 255, 255, 0.1)';
+            el.style.borderColor = 'rgba(0, 0, 0, 0.1)';
+          }
+        } else {
+          el.style.color = '#e8f0f8';
+          if (el.classList.contains('badge')) {
+            el.style.backgroundColor = 'rgba(255, 255, 255, 0.1)';
+            el.style.borderColor = 'rgba(255, 255, 255, 0.1)';
+          }
+        }
+      });
+    });
+    
+    console.log(`Updated additional elements for ${theme} theme`);
   }
 
   updateThemeIcon() {
