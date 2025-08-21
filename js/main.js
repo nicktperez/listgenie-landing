@@ -96,6 +96,9 @@ class ListGenieApp {
       console.log('Applied dark theme');
     }
     
+    // Force CSS refresh
+    this.forceCSSRefresh();
+    
     // Force a repaint to ensure CSS changes are applied
     document.body.offsetHeight;
     
@@ -105,8 +108,67 @@ class ListGenieApp {
     setTimeout(() => {
       const actualTheme = document.documentElement.getAttribute('data-theme') || 'light';
       console.log('Theme after toggle:', actualTheme);
-      console.log('Background color should be:', actualTheme === 'dark' ? 'dark' : 'white');
+      
+      // Check CSS variables
+      const computedStyle = getComputedStyle(document.documentElement);
+      const bgColor = computedStyle.getPropertyValue('--bg');
+      const fgColor = computedStyle.getPropertyValue('--fg');
+      console.log('CSS Variables after toggle - Background:', bgColor, 'Foreground:', fgColor);
+      
+      // Check if the page actually looks different
+      const bodyBg = getComputedStyle(document.body).backgroundColor;
+      console.log('Body background color:', bodyBg);
     }, 100);
+  }
+
+  forceCSSRefresh() {
+    // Temporarily disable transitions
+    document.body.style.transition = 'none';
+    
+    // Force a repaint
+    document.body.offsetHeight;
+    
+    // Re-enable transitions
+    setTimeout(() => {
+      document.body.style.transition = '';
+    }, 50);
+    
+    // Add a temporary visual indicator
+    this.showThemeIndicator();
+  }
+
+  showThemeIndicator() {
+    const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
+    
+    // Create or update theme indicator
+    let indicator = document.getElementById('temp-theme-indicator');
+    if (!indicator) {
+      indicator = document.createElement('div');
+      indicator.id = 'temp-theme-indicator';
+      indicator.style.cssText = `
+        position: fixed;
+        top: 10px;
+        right: 10px;
+        background: #ff6b6b;
+        color: white;
+        padding: 8px;
+        border-radius: 4px;
+        font-size: 12px;
+        z-index: 1000;
+        font-family: monospace;
+      `;
+      document.body.appendChild(indicator);
+    }
+    
+    indicator.textContent = `Theme: ${currentTheme}`;
+    indicator.style.background = currentTheme === 'dark' ? '#333' : '#ff6b6b';
+    
+    // Remove after 3 seconds
+    setTimeout(() => {
+      if (indicator && indicator.parentNode) {
+        indicator.parentNode.removeChild(indicator);
+      }
+    }, 3000);
   }
 
   updateThemeIcon() {

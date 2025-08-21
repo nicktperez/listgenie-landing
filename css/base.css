@@ -83,14 +83,43 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Base theme styles - more specific */
 html, body {
   margin: 0;
   padding: 0;
-  background: var(--bg);
-  color: var(--fg);
+  background: var(--bg) !important;
+  color: var(--fg) !important;
   transition: background-color 0.3s ease, color 0.3s ease;
   font-family: Inter, system-ui, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
   line-height: 1.6;
+}
+
+/* Ensure theme changes are applied immediately */
+html[data-theme="dark"], html[data-theme="dark"] body {
+  background: var(--bg) !important;
+  color: var(--fg) !important;
+}
+
+html:not([data-theme]), html:not([data-theme]) body {
+  background: var(--bg) !important;
+  color: var(--fg) !important;
+}
+
+/* Force theme changes on all major elements */
+html[data-theme="dark"] .nav,
+html[data-theme="dark"] .hero,
+html[data-theme="dark"] .card,
+html[data-theme="dark"] .interactive-preview {
+  background: var(--bg) !important;
+  color: var(--fg) !important;
+}
+
+html:not([data-theme]) .nav,
+html:not([data-theme]) .hero,
+html:not([data-theme]) .card,
+html:not([data-theme]) .interactive-preview {
+  background: var(--bg) !important;
+  color: var(--fg) !important;
 }
 
 /* Smooth transitions for theme changes */
