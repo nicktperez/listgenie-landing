@@ -4,7 +4,8 @@
   <meta charset="utf-8" />
   <title>ListGenie.ai — MLS-ready real estate listings in seconds</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="theme-color" content="#00b4a6" />
+  <meta name="theme-color" content="#00b4a6" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0a0f1a" media="(prefers-color-scheme: dark)" />
   <meta name="description" content="Generate MLS-ready listings and social captions in seconds. Pick a tone, refine with one-click actions, and save to your library. Free 14-day Pro trial." />
   
   <!-- SEO Meta Tags -->
@@ -102,9 +103,18 @@
         <a href="#pricing" class="nav-link">Pricing</a>
         <a href="#faq" class="nav-link">FAQ</a>
       </nav>
-      <div class="nav-cta">
-        <a class="btn ghost track" data-event="open_app" href="https://app.listgenie.ai">Open App</a>
-        <a class="btn solid track" data-event="start_trial" href="https://app.listgenie.ai">Start free trial</a>
+      <div class="nav-actions">
+        <button class="theme-toggle" aria-label="Toggle dark mode" title="Toggle theme">
+          <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2"/>
+            <path d="m12 2v2m0 16v2M4.22 4.22l1.42 1.42m14.14 14.14l1.42 1.42M2 12h2m16 0h2M6.34 17.66l-1.42 1.42m14.14-14.14l-1.42 1.42" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <svg class="moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <a href="#pricing" class="btn btn-ghost">Pricing</a>
+        <a href="https://app.listgenie.ai" class="btn btn-solid">Start Free Trial</a>
         <button class="hamburger" aria-label="Open Menu" aria-expanded="false" aria-controls="mobileMenu">
           <span></span><span></span><span></span>
         </button>

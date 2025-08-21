@@ -7,14 +7,117 @@ class ListGenieApp {
   }
   
   init() {
+    this.setupThemeToggle();
     this.setupEventListeners();
     this.setupAnimations();
     this.setupAccessibility();
     
-    // Ensure interactive preview is set up after DOM is fully ready
+    // Ensure interactive preview is set up after DOM is ready
     setTimeout(() => {
       this.setupInteractivePreview();
     }, 100);
+  }
+  
+  setupThemeToggle() {
+    const themeToggle = document.querySelector('.theme-toggle');
+    if (!themeToggle) {
+      console.log('Theme toggle button not found');
+      return;
+    }
+
+    console.log('Setting up theme toggle...');
+
+    // Check for saved theme preference or default to system preference
+    const savedTheme = localStorage.getItem('listgenie-theme');
+    const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    
+    console.log('Saved theme:', savedTheme);
+    console.log('System prefers dark:', systemPrefersDark);
+    
+    if (savedTheme) {
+      document.documentElement.setAttribute('data-theme', savedTheme);
+      console.log('Applied saved theme:', savedTheme);
+    } else if (systemPrefersDark) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+      console.log('Applied system dark theme');
+    } else {
+      console.log('Using default light theme');
+    }
+
+    // Update theme toggle icon
+    this.updateThemeIcon();
+
+    // Listen for theme toggle clicks
+    themeToggle.addEventListener('click', (e) => {
+      e.preventDefault();
+      console.log('Theme toggle clicked');
+      this.toggleTheme();
+    });
+
+    // Listen for system theme changes
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+      if (!localStorage.getItem('listgenie-theme')) {
+        console.log('System theme changed to:', e.matches ? 'dark' : 'light');
+        if (e.matches) {
+          document.documentElement.setAttribute('data-theme', 'dark');
+        } else {
+          document.documentElement.removeAttribute('data-theme');
+        }
+        this.updateThemeIcon();
+      }
+    });
+  }
+
+  toggleTheme() {
+    const currentTheme = document.documentElement.getAttribute('data-theme');
+    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    
+    if (newTheme === 'light') {
+      document.documentElement.removeAttribute('data-theme');
+      localStorage.setItem('listgenie-theme', 'light');
+    } else {
+      document.documentElement.setAttribute('data-theme', newTheme);
+      localStorage.setItem('listgenie-theme', newTheme);
+    }
+    
+    this.updateThemeIcon();
+    
+    // Track theme change
+    if (window.analytics) {
+      window.analytics.trackEvent('theme_changed', { theme: newTheme });
+    }
+  }
+
+  updateThemeIcon() {
+    const themeToggle = document.querySelector('.theme-toggle');
+    if (!themeToggle) return;
+
+    const isDark = document.documentElement.getAttribute('data-theme') === 'dark' || 
+                   (!document.documentElement.getAttribute('data-theme') && 
+                    window.matchMedia('(prefers-color-scheme: dark)').matches);
+
+    const sunIcon = themeToggle.querySelector('.sun-icon');
+    const moonIcon = themeToggle.querySelector('.moon-icon');
+    
+    if (sunIcon && moonIcon) {
+      if (isDark) {
+        sunIcon.style.display = 'none';
+        moonIcon.style.display = 'block';
+      } else {
+        sunIcon.style.display = 'block';
+        moonIcon.style.display = 'none';
+      }
+    }
+
+    // Update theme color meta tag
+    this.updateThemeColor(isDark);
+  }
+
+  updateThemeColor(isDark) {
+    const themeColorMeta = document.querySelector('meta[name="theme-color"]');
+    if (themeColorMeta) {
+      themeColorMeta.setAttribute('content', isDark ? '#0a0f1a' : '#00b4a6');
+    }
   }
   
   setupEventListeners() {

@@ -3,9 +3,23 @@
   position: relative;
   padding: var(--spacing-xl) 0 var(--spacing-lg);
   background: 
+    radial-gradient(1200px 500px at 50% -180px, rgba(0, 180, 166, 0.08), transparent 70%),
+    radial-gradient(800px 400px at 80% -180px, rgba(16, 185, 129, 0.06), transparent 60%);
+  overflow: hidden;
+}
+
+[data-theme="dark"] .hero {
+  background: 
     radial-gradient(1200px 500px at 50% -180px, rgba(0, 180, 166, 0.25), transparent 70%),
     radial-gradient(800px 400px at 80% -180px, rgba(16, 185, 129, 0.2), transparent 60%);
-  overflow: hidden;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) .hero {
+    background: 
+      radial-gradient(1200px 500px at 50% -180px, rgba(0, 180, 166, 0.25), transparent 70%),
+      radial-gradient(800px 400px at 80% -180px, rgba(16, 185, 129, 0.2), transparent 60%);
+  }
 }
 
 .hero::before {
@@ -227,6 +241,27 @@
   padding: var(--spacing-lg);
 }
 
+/* Light mode specific styling */
+.interactive-preview {
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  background: #ffffff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="dark"] .interactive-preview {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: var(--card);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) .interactive-preview {
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: var(--card);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.1);
+  }
+}
+
 .preview-header {
   text-align: center;
   margin-bottom: var(--spacing-lg);
@@ -249,12 +284,13 @@
   margin-bottom: var(--spacing-lg);
 }
 
-.property-input textarea {
+textarea {
   width: 100%;
-  background: var(--bg2);
-  border: 1px solid var(--line);
-  border-radius: var(--radius-md);
+  min-height: 120px;
   padding: var(--spacing-md);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: var(--bg);
   color: var(--fg);
   font-family: inherit;
   font-size: 14px;
@@ -263,10 +299,28 @@
   transition: var(--transition);
 }
 
-.property-input textarea:focus {
+textarea:focus {
   outline: none;
   border-color: var(--brand);
-  box-shadow: 0 0 0 3px rgba(124, 92, 255, 0.1);
+  box-shadow: 0 0 0 3px rgba(0, 180, 166, 0.1);
+}
+
+/* Light mode specific form styling */
+textarea {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  background: #f8fafc;
+}
+
+[data-theme="dark"] textarea {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: var(--bg);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) textarea {
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: var(--bg);
+  }
 }
 
 .property-input textarea::placeholder {

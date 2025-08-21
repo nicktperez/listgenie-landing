@@ -3,10 +3,20 @@
   position: sticky;
   top: 0;
   z-index: 50;
-  background: linear-gradient(180deg, var(--bg) 0%, rgba(11,13,17,.85) 100%);
-  backdrop-filter: saturate(140%) blur(8px);
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--line);
   transition: var(--transition);
+}
+
+[data-theme="dark"] .nav {
+  background: rgba(10, 15, 26, 0.8);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) .nav {
+    background: rgba(10, 15, 26, 0.8);
+  }
 }
 
 .nav-inner {
@@ -140,6 +150,63 @@
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+}
+
+.theme-toggle {
+  background: none;
+  border: none;
+  color: var(--fg-dim);
+  padding: 8px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: var(--transition);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.theme-toggle:hover {
+  color: var(--fg);
+  background: var(--bg2);
+}
+
+.theme-toggle:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(0, 180, 166, 0.2);
+}
+
+/* Theme toggle icons */
+.theme-toggle .sun-icon {
+  display: block;
+}
+
+.theme-toggle .moon-icon {
+  display: none;
+}
+
+[data-theme="dark"] .theme-toggle .sun-icon {
+  display: none;
+}
+
+[data-theme="dark"] .theme-toggle .moon-icon {
+  display: block;
+}
+
+/* System preference detection - show appropriate icon */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) .theme-toggle .sun-icon {
+    display: none;
+  }
+  
+  :root:not([data-theme]) .theme-toggle .moon-icon {
+    display: block;
   }
 }
 
