@@ -10,6 +10,11 @@ class ListGenieApp {
     this.setupEventListeners();
     this.setupAnimations();
     this.setupAccessibility();
+    
+    // Ensure interactive preview is set up after DOM is fully ready
+    setTimeout(() => {
+      this.setupInteractivePreview();
+    }, 100);
   }
   
   setupEventListeners() {
@@ -186,17 +191,32 @@ class ListGenieApp {
   }
   
   setupInteractivePreview() {
+    console.log('Setting up interactive preview...');
+    
     const toneButtons = document.querySelectorAll('.tone-btn');
     const generateBtn = document.querySelector('.generate-btn');
     const textarea = document.querySelector('.property-input textarea');
     const output = document.querySelector('.preview-output');
     const exampleButtons = document.querySelectorAll('.example-btn');
     
-    if (!toneButtons.length || !generateBtn || !textarea || !output) return;
+    console.log('Found elements:', {
+      toneButtons: toneButtons.length,
+      generateBtn: !!generateBtn,
+      textarea: !!textarea,
+      output: !!output,
+      exampleButtons: exampleButtons.length
+    });
+    
+    if (!toneButtons.length || !generateBtn || !textarea || !output) {
+      console.error('Missing required elements for interactive preview');
+      return;
+    }
     
     // Tone button functionality
     toneButtons.forEach(btn => {
-      btn.addEventListener('click', () => {
+      btn.addEventListener('click', (e) => {
+        console.log('Tone button clicked:', btn.dataset.tone);
+        e.preventDefault();
         toneButtons.forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
       });
@@ -204,7 +224,9 @@ class ListGenieApp {
     
     // Example button functionality
     exampleButtons.forEach(btn => {
-      btn.addEventListener('click', () => {
+      btn.addEventListener('click', (e) => {
+        console.log('Example button clicked');
+        e.preventDefault();
         const exampleText = btn.dataset.example;
         textarea.value = exampleText;
         textarea.focus();
@@ -223,7 +245,60 @@ class ListGenieApp {
     });
     
     // Generate button functionality
-    generateBtn.addEventListener('click', () => this.generatePreviewListing());
+    generateBtn.addEventListener('click', (e) => {
+      console.log('Generate button clicked');
+      e.preventDefault();
+      this.generatePreviewListing();
+    });
+    
+    // Add click feedback to all buttons
+    const allButtons = document.querySelectorAll('.interactive-preview button');
+    allButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        btn.style.transform = 'scale(0.95)';
+        setTimeout(() => {
+          btn.style.transform = '';
+        }, 150);
+      });
+    });
+    
+    console.log('Interactive preview setup complete!');
+    
+    // Test the setup
+    this.testInteractivePreview();
+  }
+  
+  testInteractivePreview() {
+    console.log('Testing interactive preview...');
+    
+    // Test if we can find all elements
+    const elements = {
+      textarea: document.querySelector('.property-input textarea'),
+      generateBtn: document.querySelector('.generate-btn'),
+      toneButtons: document.querySelectorAll('.tone-btn'),
+      exampleButtons: document.querySelectorAll('.example-btn'),
+      output: document.querySelector('.preview-output')
+    };
+    
+    console.log('Element test results:', elements);
+    
+    // Test if event listeners are working
+    const testBtn = document.querySelector('.generate-btn');
+    if (testBtn) {
+      console.log('Generate button found, adding test click handler');
+      testBtn.addEventListener('click', () => {
+        console.log('✅ Generate button is working!');
+      });
+    }
+    
+    // Test tone buttons
+    const testToneBtn = document.querySelector('.tone-btn');
+    if (testToneBtn) {
+      console.log('Tone button found, adding test click handler');
+      testToneBtn.addEventListener('click', () => {
+        console.log('✅ Tone button is working!');
+      });
+    }
   }
   
   generatePreviewListing() {

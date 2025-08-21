@@ -275,17 +275,41 @@
   font-weight: 500;
   cursor: pointer;
   transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+
+.tone-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+  transition: left 0.5s;
+}
+
+.tone-btn:hover::before {
+  left: 100%;
 }
 
 .tone-btn:hover {
   background: rgba(255,255,255,.06);
   border-color: rgba(255,255,255,.2);
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+.tone-btn:active {
+  transform: translateY(0);
 }
 
 .tone-btn.active {
   background: var(--brand-soft);
   border-color: var(--brand);
   color: var(--brand);
+  box-shadow: 0 0 0 3px rgba(124, 92, 255, 0.1);
 }
 
 .generate-btn {
@@ -299,17 +323,45 @@
   font-size: 16px;
   cursor: pointer;
   transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+
+.generate-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: left 0.5s;
+}
+
+.generate-btn:hover::before {
+  left: 100%;
 }
 
 .generate-btn:hover {
   background: #6b54f2;
   transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(124, 92, 255, 0.3);
+}
+
+.generate-btn:active {
+  transform: translateY(0);
+}
+
+.generate-btn:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(124, 92, 255, 0.3);
 }
 
 .generate-btn:disabled {
   opacity: 0.6;
   cursor: not-allowed;
   transform: none;
+  box-shadow: none;
 }
 
 .preview-output {
@@ -465,6 +517,23 @@
   transition: var(--transition);
   text-align: left;
   line-height: 1.4;
+  position: relative;
+  overflow: hidden;
+}
+
+.example-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(124, 92, 255, 0.1), transparent);
+  transition: left 0.5s;
+}
+
+.example-btn:hover::before {
+  left: 100%;
 }
 
 .example-btn:hover {
@@ -472,10 +541,17 @@
   border-color: var(--brand);
   color: var(--fg);
   transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
 }
 
 .example-btn:active {
   transform: translateY(0);
+}
+
+.example-btn:focus {
+  outline: none;
+  border-color: var(--brand);
+  box-shadow: 0 0 0 3px rgba(124, 92, 255, 0.1);
 }
 
 .output-actions {
