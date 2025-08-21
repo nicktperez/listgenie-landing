@@ -146,31 +146,41 @@
 
       <!-- HERO MEDIA -->
       <div class="hero-media">
-        <div class="mock">
-          <div class="mock-top">
-            <div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div>
+        <div class="interactive-preview">
+          <div class="preview-header">
+            <h3>✨ Try ListGenie Now</h3>
+            <p>See how AI transforms your property descriptions into professional listings</p>
           </div>
-          <div class="mock-body">
-            <!-- If you have a GIF/MP4, uncomment ONE of these and set src -->
-            <!-- <img class="mock-media" src="assets/listgenie-demo.gif" alt="ListGenie demo showing the listing generation process" /> -->
-            <!-- <video class="mock-media" src="assets/listgenie-demo.mp4" autoplay muted loop playsinline></video> -->
-
-            <!-- Placeholder skeleton if no asset yet -->
-            <div class="mock-grid">
-              <div class="mock-col">
-                <div class="chip">Tone: MLS-ready</div>
-                <div class="chip">Social caption</div>
-                <div class="chip">Luxury tone</div>
-              </div>
-              <div class="mock-col">
-                <div class="mock-box shimmer"></div>
-                <div class="mock-box shimmer small"></div>
-                <div class="mock-box shimmer"></div>
-              </div>
+          
+          <div class="property-input">
+            <textarea placeholder="Describe a property: 3 bed, 2 bath, 1,200 sqft, updated kitchen, great neighborhood..." rows="3"></textarea>
+            <div class="example-properties">
+              <span class="example-label">Try these examples:</span>
+              <button class="example-btn" data-example="3 bed, 2 bath, 1,200 sqft, updated kitchen, great neighborhood, attached garage">3 bed, 2 bath, 1,200 sqft, updated kitchen, great neighborhood, attached garage</button>
+              <button class="example-btn" data-example="Luxury 4 bed, 3.5 bath, 2,800 sqft, chef's kitchen, private yard, premium location">Luxury 4 bed, 3.5 bath, 2,800 sqft, chef's kitchen, private yard, premium location</button>
+              <button class="example-btn" data-example="Cozy 2 bed, 1 bath, 900 sqft, modern updates, downtown area, walkable">Cozy 2 bed, 1 bath, 900 sqft, modern updates, downtown area, walkable</button>
+            </div>
+            <div class="tone-selector">
+              <button class="tone-btn active" data-tone="mls">MLS-ready</button>
+              <button class="tone-btn" data-tone="social">Social</button>
+              <button class="tone-btn" data-tone="luxury">Luxury</button>
+            </div>
+            <button class="generate-btn">Generate Listing</button>
+          </div>
+          
+          <div class="preview-output">
+            <div class="output-placeholder">
+              <div class="placeholder-text">Your generated listing will appear here...</div>
+            </div>
+            <div class="output-actions" style="display: none;">
+              <button class="copy-btn" title="Copy to clipboard">
+                <span class="copy-icon">📋</span>
+                Copy
+              </button>
             </div>
           </div>
         </div>
-        <p class="hero-caption">Live preview from the ListGenie app</p>
+        <p class="hero-caption">Interactive preview - try ListGenie yourself</p>
       </div>
     </div>
   </section>

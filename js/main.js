@@ -24,6 +24,9 @@ class ListGenieApp {
     
     // Handle page visibility changes
     document.addEventListener('visibilitychange', () => this.handleVisibilityChange());
+    
+    // Setup interactive preview
+    this.setupInteractivePreview();
   }
   
   setupAnimations() {
@@ -180,6 +183,219 @@ class ListGenieApp {
       const isVisible = helpModal.style.display === 'block';
       helpModal.style.display = isVisible ? 'none' : 'block';
     }
+  }
+  
+  setupInteractivePreview() {
+    const toneButtons = document.querySelectorAll('.tone-btn');
+    const generateBtn = document.querySelector('.generate-btn');
+    const textarea = document.querySelector('.property-input textarea');
+    const output = document.querySelector('.preview-output');
+    const exampleButtons = document.querySelectorAll('.example-btn');
+    
+    if (!toneButtons.length || !generateBtn || !textarea || !output) return;
+    
+    // Tone button functionality
+    toneButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        toneButtons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+      });
+    });
+    
+    // Example button functionality
+    exampleButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const exampleText = btn.dataset.example;
+        textarea.value = exampleText;
+        textarea.focus();
+        
+        // Highlight the clicked button briefly
+        btn.style.background = 'var(--brand-soft)';
+        btn.style.borderColor = 'var(--brand)';
+        btn.style.color = 'var(--brand)';
+        
+        setTimeout(() => {
+          btn.style.background = '';
+          btn.style.borderColor = '';
+          btn.style.color = '';
+        }, 1000);
+      });
+    });
+    
+    // Generate button functionality
+    generateBtn.addEventListener('click', () => this.generatePreviewListing());
+  }
+  
+  generatePreviewListing() {
+    const textarea = document.querySelector('.property-input textarea');
+    const generateBtn = document.querySelector('.generate-btn');
+    const output = document.querySelector('.preview-output');
+    const activeTone = document.querySelector('.tone-btn.active');
+    
+    if (!textarea || !generateBtn || !output || !activeTone) return;
+    
+    const propertyText = textarea.value.trim();
+    if (!propertyText) {
+      this.showPreviewMessage('Please describe a property first!', 'error');
+      return;
+    }
+    
+    // Show loading state
+    generateBtn.disabled = true;
+    generateBtn.textContent = 'Generating...';
+    generateBtn.parentElement.parentElement.classList.add('generating');
+    
+    // Show loading in output
+    output.innerHTML = `
+      <div class="loading-state">
+        <div class="loading-spinner"></div>
+        <p>AI is crafting your perfect listing...</p>
+      </div>
+    `;
+    
+    // Simulate generation delay with progress
+    let progress = 0;
+    const progressInterval = setInterval(() => {
+      progress += 20;
+      if (progress >= 100) {
+        clearInterval(progressInterval);
+        this.completeGeneration(propertyText, activeTone, output, generateBtn);
+      }
+    }, 400);
+  }
+  
+  completeGeneration(propertyText, activeTone, output, generateBtn) {
+    const tone = activeTone.dataset.tone;
+    const generatedContent = this.createSampleListing(propertyText, tone);
+    
+    // Add fade-in effect
+    output.style.opacity = '0';
+    output.innerHTML = generatedContent;
+    output.classList.add('has-content');
+    
+    // Show copy button
+    const outputActions = document.querySelector('.output-actions');
+    if (outputActions) {
+      outputActions.style.display = 'block';
+      this.setupCopyButton();
+    }
+    
+    // Fade in the content
+    setTimeout(() => {
+      output.style.transition = 'opacity 0.5s ease';
+      output.style.opacity = '1';
+    }, 50);
+    
+    // Reset button
+    generateBtn.disabled = false;
+    generateBtn.textContent = 'Generate Another';
+    generateBtn.parentElement.parentElement.classList.remove('generating');
+    
+    // Track the interaction
+    if (window.analytics) {
+      window.analytics.sendEvent('preview_generated', { tone, hasContent: !!propertyText });
+    }
+    
+    // Show success message
+    this.showPreviewMessage('Listing generated successfully!', 'success');
+  }
+  
+  setupCopyButton() {
+    const copyBtn = document.querySelector('.copy-btn');
+    if (!copyBtn) return;
+    
+    copyBtn.addEventListener('click', async () => {
+      const generatedContent = document.querySelector('.generated-content');
+      if (!generatedContent) return;
+      
+      const textToCopy = generatedContent.textContent || generatedContent.innerText;
+      
+      try {
+        await Utils.copyToClipboard(textToCopy);
+        
+        // Show success state
+        copyBtn.classList.add('copied');
+        copyBtn.innerHTML = '<span class="copy-icon">✅</span> Copied!';
+        
+        // Reset after 2 seconds
+        setTimeout(() => {
+          copyBtn.classList.remove('copied');
+          copyBtn.innerHTML = '<span class="copy-icon">📋</span> Copy';
+        }, 2000);
+        
+        // Track copy event
+        if (window.analytics) {
+          window.analytics.sendEvent('preview_copied');
+        }
+      } catch (error) {
+        console.error('Failed to copy:', error);
+        this.showPreviewMessage('Failed to copy to clipboard', 'error');
+      }
+    });
+  }
+  
+  createSampleListing(propertyText, tone) {
+    const baseText = propertyText.toLowerCase();
+    let listing = '';
+    
+    // Extract key property features
+    const hasBeds = baseText.includes('bed') || baseText.includes('bedroom');
+    const hasBaths = baseText.includes('bath') || baseText.includes('bathroom');
+    const hasSqft = baseText.includes('sqft') || baseText.includes('square feet');
+    const hasKitchen = baseText.includes('kitchen') || baseText.includes('updated');
+    const hasNeighborhood = baseText.includes('neighborhood') || baseText.includes('area') || baseText.includes('location');
+    const hasGarage = baseText.includes('garage') || baseText.includes('parking');
+    const hasYard = baseText.includes('yard') || baseText.includes('garden') || baseText.includes('outdoor');
+    
+    switch (tone) {
+      case 'mls':
+        listing = `
+          <div class="generated-content">
+            <h4>MLS-Ready Listing</h4>
+            <p>${hasBeds ? 'Beautiful' : 'Stunning'} ${hasBeds ? 'bedroom' : 'property'} featuring ${hasKitchen ? 'recently updated' : 'modern'} finishes and ${hasSqft ? 'generous square footage' : 'excellent value'}. ${hasKitchen ? 'The kitchen has been thoughtfully designed with premium appliances, custom cabinetry, and ample storage space.' : 'This property offers excellent value and location for discerning buyers.'}</p>
+            <p>${hasNeighborhood ? 'Located in a highly desirable neighborhood' : 'Situated in a prime location'} with easy access to amenities, schools, and transportation. ${hasGarage ? 'The attached garage provides convenient parking and additional storage.' : ''} ${hasYard ? 'The private yard offers outdoor living space perfect for entertaining.' : ''} ${hasSqft ? 'Spacious layout perfect for families or professionals seeking room to grow.' : 'Ideal for those seeking quality and convenience in today\'s market.'}</p>
+            <p>Don't miss this opportunity to own a home that combines comfort, style, and location. Schedule your private showing today!</p>
+          </div>
+        `;
+        break;
+        
+      case 'social':
+        listing = `
+          <div class="generated-content">
+            <h4>Social Media Caption</h4>
+            <p>🏠 JUST LISTED! ${hasKitchen ? 'Freshly updated' : 'Stunning'} ${hasBeds ? 'bedroom' : 'property'} that's absolutely 🔥</p>
+            <p>${hasKitchen ? '✨ Dream kitchen alert ✨' : '💎 This one won\'t last long!'} ${hasNeighborhood ? '📍 Prime location in an amazing neighborhood' : '📍 Location, location, location!'} ${hasYard ? '🌳 Private outdoor space perfect for summer BBQs' : ''}</p>
+            <p>${hasGarage ? '🚗 Attached garage for easy parking' : ''} ${hasSqft ? '📏 Tons of space to grow into' : ''} This is the one you've been waiting for!</p>
+            <p>DM me for a private showing! 📱 #RealEstate #JustListed #${hasKitchen ? 'Updated' : 'Beautiful'}Home #${hasNeighborhood ? 'GreatLocation' : 'DreamHome'}</p>
+          </div>
+        `;
+        break;
+        
+      case 'luxury':
+        listing = `
+          <div class="generated-content">
+            <h4>Luxury Listing</h4>
+            <p>Exquisite ${hasBeds ? 'bedroom' : 'residence'} showcasing ${hasKitchen ? 'sophisticated renovations' : 'unparalleled craftsmanship'} and timeless elegance. ${hasKitchen ? 'The chef-inspired kitchen features premium materials, state-of-the-art appliances, and custom details that define luxury living.' : 'Every detail has been carefully curated to create an atmosphere of refined luxury and sophistication.'}</p>
+            <p>${hasNeighborhood ? 'Nestled in an exclusive neighborhood' : 'Positioned in a prestigious location'} where luxury meets convenience and privacy. ${hasGarage ? 'The elegant garage provides secure parking and additional storage solutions.' : ''} ${hasYard ? 'The meticulously landscaped grounds offer a private sanctuary for outdoor entertaining and relaxation.' : ''} ${hasSqft ? 'Generous proportions provide the perfect canvas for sophisticated living and entertaining.' : 'This exceptional property represents the pinnacle of luxury real estate.'}</p>
+            <p>For the discerning buyer who demands nothing but the finest, this residence offers an unparalleled opportunity to experience luxury living at its most refined.</p>
+          </div>
+        `;
+        break;
+        
+      default:
+        listing = `
+          <div class="generated-content">
+            <h4>Generated Listing</h4>
+            <p>${propertyText}</p>
+          </div>
+        `;
+    }
+    
+    return listing;
+  }
+  
+  showPreviewMessage(message, type = 'info') {
+    ListGenieApp.showNotification(message, type);
   }
   
   // Public methods for external use
