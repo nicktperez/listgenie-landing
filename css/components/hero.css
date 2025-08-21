@@ -3,8 +3,8 @@
   position: relative;
   padding: var(--spacing-xl) 0 var(--spacing-lg);
   background: 
-    radial-gradient(1200px 500px at 50% -180px, rgba(124,92,255,.25), transparent 70%),
-    radial-gradient(800px 400px at 80% -180px, rgba(0,121,255,.2), transparent 60%);
+    radial-gradient(1200px 500px at 50% -180px, rgba(0, 180, 166, 0.25), transparent 70%),
+    radial-gradient(800px 400px at 80% -180px, rgba(16, 185, 129, 0.2), transparent 60%);
   overflow: hidden;
 }
 
@@ -76,8 +76,8 @@
 }
 
 .accent {
-  color: #d9d6ff;
-  background: linear-gradient(135deg, #d9d6ff 0%, #b8b5ff 100%);
+  color: #00b4a6;
+  background: linear-gradient(135deg, #00b4a6 0%, #10b981 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -324,7 +324,7 @@
   background: var(--brand-soft);
   border-color: var(--brand);
   color: var(--brand);
-  box-shadow: 0 0 0 3px rgba(124, 92, 255, 0.1);
+  box-shadow: 0 0 0 3px rgba(0, 180, 166, 0.1);
 }
 
 .generate-btn {
@@ -358,9 +358,9 @@
 }
 
 .generate-btn:hover {
-  background: #6b54f2;
+  background: #009688;
   transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(124, 92, 255, 0.3);
+  box-shadow: 0 4px 12px rgba(0, 180, 166, 0.3);
 }
 
 .generate-btn:active {
@@ -369,7 +369,7 @@
 
 .generate-btn:focus {
   outline: none;
-  box-shadow: 0 0 0 3px rgba(124, 92, 255, 0.3);
+  box-shadow: 0 0 0 3px rgba(0, 180, 166, 0.3);
 }
 
 .generate-btn:disabled {
@@ -614,8 +614,8 @@
 .premium-features {
   margin-top: var(--spacing-md);
   padding: var(--spacing-md);
-  background: rgba(124, 92, 255, 0.1);
-  border: 1px solid rgba(124, 92, 255, 0.2);
+  background: rgba(0, 180, 166, 0.1);
+  border: 1px solid rgba(0, 180, 166, 0.2);
   border-radius: var(--radius-sm);
   border-left: 3px solid var(--brand);
 }
@@ -634,8 +634,8 @@
 .pro-cta {
   margin-top: var(--spacing-lg);
   padding: var(--spacing-md);
-  background: rgba(124, 92, 255, 0.05);
-  border: 1px solid rgba(124, 92, 255, 0.1);
+  background: rgba(0, 180, 166, 0.05);
+  border: 1px solid rgba(0, 180, 166, 0.1);
   border-radius: var(--radius-md);
   text-align: center;
 }

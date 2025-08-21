@@ -6,8 +6,8 @@
   <path d="M20 12l-4 4-4-4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
   <defs>
     <linearGradient id="paint0_linear" x1="0" y1="0" x2="32" y2="32" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#7c5cff"/>
-      <stop offset="1" stop-color="#6b54f2"/>
+      <stop stop-color="#00b4a6"/>
+      <stop offset="1" stop-color="#009688"/>
     </linearGradient>
   </defs>
 </svg>

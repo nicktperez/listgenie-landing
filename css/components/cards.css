@@ -17,7 +17,13 @@
 
 .card:focus-within {
   border-color: var(--brand);
-  box-shadow: 0 0 0 3px rgba(124, 92, 255, 0.1);
+  box-shadow: 0 0 0 3px rgba(0, 180, 166, 0.1);
+}
+
+.example-btn:focus {
+  outline: none;
+  border-color: var(--brand);
+  box-shadow: 0 0 0 3px rgba(0, 180, 166, 0.1);
 }
 
 .card-icon {

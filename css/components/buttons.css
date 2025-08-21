@@ -24,7 +24,7 @@
 
 .btn:focus {
   outline: none;
-  box-shadow: 0 0 0 3px rgba(124, 92, 255, 0.3);
+  box-shadow: 0 0 0 3px rgba(0, 180, 166, 0.3);
 }
 
 .btn:active {
@@ -45,8 +45,8 @@
 }
 
 .btn.solid:hover {
-  background: #6b54f2;
-  border-color: #5a47e0;
+  background: #009688;
+  border-color: #00897a;
 }
 
 .btn.ghost {

@@ -1,15 +1,15 @@
 :root {
-  /* Colors */
-  --bg: #0b0d11;
-  --bg2: #0f1218;
-  --fg: #e9ecf1;
-  --fg-dim: #b9c0cc;
-  --muted: #95a0b3;
-  --card: #151a22;
+  /* Colors - New Professional Teal/Blue-Green Scheme */
+  --bg: #0a0f1a;
+  --bg2: #0f1624;
+  --fg: #e8f0f8;
+  --fg-dim: #b8c8d8;
+  --muted: #8a9ba8;
+  --card: #141c2a;
   --line: rgba(255,255,255,.08);
-  --brand: #7c5cff;
-  --brand-soft: rgba(124,92,255,.18);
-  --ok: #38b000;
+  --brand: #00b4a6;
+  --brand-soft: rgba(0, 180, 166, 0.18);
+  --ok: #10b981;
   
   /* Spacing */
   --spacing-xs: 4px;
