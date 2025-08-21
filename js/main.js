@@ -106,59 +106,65 @@ class ListGenieApp {
   applyLightTheme() {
     console.log('Applying light theme...');
     
-    // Directly apply light theme styles
+    // Force background changes with !important equivalent
+    document.documentElement.style.backgroundColor = '#ffffff';
     document.body.style.backgroundColor = '#ffffff';
     document.body.style.color = '#0f172a';
+    
+    // Force HTML and body background
+    document.documentElement.style.setProperty('background-color', '#ffffff', 'important');
+    document.body.style.setProperty('background-color', '#ffffff', 'important');
     
     // Apply to navigation
     const nav = document.querySelector('.nav');
     if (nav) {
-      nav.style.backgroundColor = 'rgba(255, 255, 255, 0.8)';
-      nav.style.borderBottomColor = 'rgba(0, 0, 0, 0.08)';
+      nav.style.setProperty('background-color', 'rgba(255, 255, 255, 0.8)', 'important');
+      nav.style.setProperty('border-bottom-color', 'rgba(0, 0, 0, 0.08)', 'important');
       console.log('Updated navigation to light theme');
     }
     
     // Apply to hero section
     const hero = document.querySelector('.hero');
     if (hero) {
-      hero.style.background = `
+      hero.style.setProperty('background', `
         radial-gradient(1200px 500px at 50% -180px, rgba(0, 180, 166, 0.08), transparent 70%),
         radial-gradient(800px 400px at 80% -180px, rgba(16, 185, 129, 0.06), transparent 60%)
-      `;
+      `, 'important');
+      hero.style.setProperty('background-color', '#ffffff', 'important');
       console.log('Updated hero to light theme');
     }
     
-    // Apply to all sections
+    // Apply to all sections with force
     const sections = document.querySelectorAll('section');
     sections.forEach(section => {
-      section.style.backgroundColor = '#ffffff';
-      section.style.color = '#0f172a';
+      section.style.setProperty('background-color', '#ffffff', 'important');
+      section.style.setProperty('color', '#0f172a', 'important');
     });
     
     // Apply to cards
     const cards = document.querySelectorAll('.card');
     cards.forEach(card => {
-      card.style.backgroundColor = '#ffffff';
-      card.style.borderColor = 'rgba(0, 0, 0, 0.08)';
-      card.style.color = '#0f172a';
+      card.style.setProperty('background-color', '#ffffff', 'important');
+      card.style.setProperty('border-color', 'rgba(0, 0, 0, 0.08)', 'important');
+      card.style.setProperty('color', '#0f172a', 'important');
     });
     console.log(`Updated ${cards.length} cards to light theme`);
     
     // Apply to interactive preview
     const preview = document.querySelector('.interactive-preview');
     if (preview) {
-      preview.style.backgroundColor = '#ffffff';
-      preview.style.borderColor = 'rgba(0, 0, 0, 0.08)';
-      preview.style.color = '#0f172a';
+      preview.style.setProperty('background-color', '#ffffff', 'important');
+      preview.style.setProperty('border-color', 'rgba(0, 0, 0, 0.08)', 'important');
+      preview.style.setProperty('color', '#0f172a', 'important');
       console.log('Updated interactive preview to light theme');
     }
     
     // Apply to textarea
     const textarea = document.querySelector('textarea');
     if (textarea) {
-      textarea.style.backgroundColor = '#f8fafc';
-      textarea.style.borderColor = 'rgba(0, 0, 0, 0.1)';
-      textarea.style.color = '#0f172a';
+      textarea.style.setProperty('background-color', '#f8fafc', 'important');
+      textarea.style.setProperty('border-color', 'rgba(0, 0, 0, 0.1)', 'important');
+      textarea.style.setProperty('color', '#0f172a', 'important');
       console.log('Updated textarea to light theme');
     }
     
@@ -168,7 +174,7 @@ class ListGenieApp {
     let updatedCount = 0;
     textElements.forEach(el => {
       if (!el.closest('.btn') && !el.closest('button')) { // Don't change button text colors
-        el.style.color = '#0f172a';
+        el.style.setProperty('color', '#0f172a', 'important');
         updatedCount++;
       }
     });
@@ -177,16 +183,16 @@ class ListGenieApp {
     // Apply to specific elements that might be missed
     const badges = document.querySelectorAll('.badge');
     badges.forEach(badge => {
-      badge.style.backgroundColor = 'rgba(255, 255, 255, 0.1)';
-      badge.style.borderColor = 'rgba(0, 0, 0, 0.1)';
-      badge.style.color = '#0f172a';
+      badge.style.setProperty('background-color', 'rgba(255, 255, 255, 0.1)', 'important');
+      badge.style.setProperty('border-color', 'rgba(0, 0, 0, 0.1)', 'important');
+      badge.style.setProperty('color', '#0f172a', 'important');
     });
     
     const inputs = document.querySelectorAll('input, textarea, select');
     inputs.forEach(input => {
-      input.style.backgroundColor = '#f8fafc';
-      input.style.borderColor = 'rgba(0, 0, 0, 0.1)';
-      input.style.color = '#0f172a';
+      input.style.setProperty('background-color', '#f8fafc', 'important');
+      input.style.setProperty('border-color', 'rgba(0, 0, 0, 0.1)', 'important');
+      input.style.setProperty('color', '#0f172a', 'important');
     });
     
     // Additional targeting for common elements
@@ -198,59 +204,65 @@ class ListGenieApp {
   applyDarkTheme() {
     console.log('Applying dark theme...');
     
-    // Directly apply dark theme styles
+    // Force background changes with !important equivalent
+    document.documentElement.style.backgroundColor = '#0a0f1a';
     document.body.style.backgroundColor = '#0a0f1a';
     document.body.style.color = '#e8f0f8';
+    
+    // Force HTML and body background
+    document.documentElement.style.setProperty('background-color', '#0a0f1a', 'important');
+    document.body.style.setProperty('background-color', '#0a0f1a', 'important');
     
     // Apply to navigation
     const nav = document.querySelector('.nav');
     if (nav) {
-      nav.style.backgroundColor = 'rgba(10, 15, 26, 0.8)';
-      nav.style.borderBottomColor = 'rgba(255, 255, 255, 0.08)';
+      nav.style.setProperty('background-color', 'rgba(10, 15, 26, 0.8)', 'important');
+      nav.style.setProperty('border-bottom-color', 'rgba(255, 255, 255, 0.08)', 'important');
       console.log('Updated navigation to dark theme');
     }
     
     // Apply to hero section
     const hero = document.querySelector('.hero');
     if (hero) {
-      hero.style.background = `
+      hero.style.setProperty('background', `
         radial-gradient(1200px 500px at 50% -180px, rgba(0, 180, 166, 0.25), transparent 70%),
         radial-gradient(800px 400px at 80% -180px, rgba(16, 185, 129, 0.2), transparent 60%)
-      `;
+      `, 'important');
+      hero.style.setProperty('background-color', '#0a0f1a', 'important');
       console.log('Updated hero to dark theme');
     }
     
-    // Apply to all sections
+    // Apply to all sections with force
     const sections = document.querySelectorAll('section');
     sections.forEach(section => {
-      section.style.backgroundColor = '#0a0f1a';
-      section.style.color = '#e8f0f8';
+      section.style.setProperty('background-color', '#0a0f1a', 'important');
+      section.style.setProperty('color', '#e8f0f8', 'important');
     });
     
     // Apply to cards
     const cards = document.querySelectorAll('.card');
     cards.forEach(card => {
-      card.style.backgroundColor = '#141c2a';
-      card.style.borderColor = 'rgba(255, 255, 255, 0.08)';
-      card.style.color = '#e8f0f8';
+      card.style.setProperty('background-color', '#141c2a', 'important');
+      card.style.setProperty('border-color', 'rgba(255, 255, 255, 0.08)', 'important');
+      card.style.setProperty('color', '#e8f0f8', 'important');
     });
     console.log(`Updated ${cards.length} cards to dark theme`);
     
     // Apply to interactive preview
     const preview = document.querySelector('.interactive-preview');
     if (preview) {
-      preview.style.backgroundColor = '#141c2a';
-      preview.style.borderColor = 'rgba(255, 255, 255, 0.08)';
-      preview.style.color = '#e8f0f8';
+      preview.style.setProperty('background-color', '#141c2a', 'important');
+      preview.style.setProperty('border-color', 'rgba(255, 255, 255, 0.08)', 'important');
+      preview.style.setProperty('color', '#e8f0f8', 'important');
       console.log('Updated interactive preview to dark theme');
     }
     
     // Apply to textarea
     const textarea = document.querySelector('textarea');
     if (textarea) {
-      textarea.style.backgroundColor = '#0a0f1a';
-      textarea.style.borderColor = 'rgba(255, 255, 255, 0.1)';
-      textarea.style.color = '#e8f0f8';
+      textarea.style.setProperty('background-color', '#0a0f1a', 'important');
+      textarea.style.setProperty('border-color', 'rgba(255, 255, 255, 0.1)', 'important');
+      textarea.style.setProperty('color', '#e8f0f8', 'important');
       console.log('Updated textarea to dark theme');
     }
     
@@ -260,7 +272,7 @@ class ListGenieApp {
     let updatedCount = 0;
     textElements.forEach(el => {
       if (!el.closest('.btn') && !el.closest('button')) { // Don't change button text colors
-        el.style.color = '#e8f0f8';
+        el.style.setProperty('color', '#e8f0f8', 'important');
         updatedCount++;
       }
     });
@@ -269,16 +281,16 @@ class ListGenieApp {
     // Apply to specific elements that might be missed
     const badges = document.querySelectorAll('.badge');
     badges.forEach(badge => {
-      badge.style.backgroundColor = 'rgba(255, 255, 255, 0.1)';
-      badge.style.borderColor = 'rgba(255, 255, 255, 0.1)';
-      badge.style.color = '#e8f0f8';
+      badge.style.setProperty('background-color', 'rgba(255, 255, 255, 0.1)', 'important');
+      badge.style.setProperty('border-color', 'rgba(255, 255, 255, 0.1)', 'important');
+      badge.style.setProperty('color', '#e8f0f8', 'important');
     });
     
     const inputs = document.querySelectorAll('input, textarea, select');
     inputs.forEach(input => {
-      input.style.backgroundColor = '#0a0f1a';
-      input.style.borderColor = 'rgba(255, 255, 255, 0.1)';
-      input.style.color = '#e8f0f8';
+      input.style.setProperty('background-color', '#0a0f1a', 'important');
+      input.style.setProperty('border-color', 'rgba(255, 255, 255, 0.1)', 'important');
+      input.style.setProperty('color', '#e8f0f8', 'important');
     });
     
     // Additional targeting for common elements
@@ -312,16 +324,16 @@ class ListGenieApp {
       const elements = document.querySelectorAll(selector);
       elements.forEach(el => {
         if (isLight) {
-          el.style.color = '#0f172a';
+          el.style.setProperty('color', '#0f172a', 'important');
           if (el.classList.contains('badge')) {
-            el.style.backgroundColor = 'rgba(255, 255, 255, 0.1)';
-            el.style.borderColor = 'rgba(0, 0, 0, 0.1)';
+            el.style.setProperty('background-color', 'rgba(255, 255, 255, 0.1)', 'important');
+            el.style.setProperty('border-color', 'rgba(0, 0, 0, 0.1)', 'important');
           }
         } else {
-          el.style.color = '#e8f0f8';
+          el.style.setProperty('color', '#e8f0f8', 'important');
           if (el.classList.contains('badge')) {
-            el.style.backgroundColor = 'rgba(255, 255, 255, 0.1)';
-            el.style.borderColor = 'rgba(255, 255, 255, 0.1)';
+            el.style.setProperty('background-color', 'rgba(255, 255, 255, 0.1)', 'important');
+            el.style.setProperty('border-color', 'rgba(255, 255, 255, 0.1)', 'important');
           }
         }
       });
