@@ -77,10 +77,10 @@
 }
 
 .btn.compact {
-  padding: 1px 4px;
-  font-size: 10px;
-  height: 24px;
-  line-height: 1;
+  padding: 6px 12px;
+  font-size: 13px;
+  height: 36px;
+  line-height: 1.2;
 }
 
 /* Loading state */
